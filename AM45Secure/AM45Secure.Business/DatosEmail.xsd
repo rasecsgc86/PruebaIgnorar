@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DatosEmail" targetNamespace="http://tempuri.org/DatosEmail.xsd" xmlns:mstns="http://tempuri.org/DatosEmail.xsd" xmlns="http://tempuri.org/DatosEmail.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DatosEmail" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DatosEmail" msprop:Generator_UserDSName="DatosEmail">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ReporteCorreosExcel" msprop:Generator_TableClassName="ReporteCorreosExcelDataTable" msprop:Generator_TableVarName="tableReporteCorreosExcel" msprop:Generator_TablePropName="ReporteCorreosExcel" msprop:Generator_RowDeletingName="ReporteCorreosExcelRowDeleting" msprop:Generator_RowChangingName="ReporteCorreosExcelRowChanging" msprop:Generator_RowEvHandlerName="ReporteCorreosExcelRowChangeEventHandler" msprop:Generator_RowDeletedName="ReporteCorreosExcelRowDeleted" msprop:Generator_UserTableName="ReporteCorreosExcel" msprop:Generator_RowChangedName="ReporteCorreosExcelRowChanged" msprop:Generator_RowEvArgName="ReporteCorreosExcelRowChangeEvent" msprop:Generator_RowClassName="ReporteCorreosExcelRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cotizante" msprop:Generator_ColumnVarNameInTable="columnCotizante" msprop:Generator_ColumnPropNameInRow="Cotizante" msprop:Generator_ColumnPropNameInTable="CotizanteColumn" msprop:Generator_UserColumnName="Cotizante" type="xs:string" minOccurs="0" />
+              <xs:element name="destinatarios" msprop:Generator_ColumnVarNameInTable="columndestinatarios" msprop:Generator_ColumnPropNameInRow="destinatarios" msprop:Generator_ColumnPropNameInTable="destinatariosColumn" msprop:Generator_UserColumnName="destinatarios" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha" msprop:Generator_ColumnVarNameInTable="columnFecha" msprop:Generator_ColumnPropNameInRow="Fecha" msprop:Generator_ColumnPropNameInTable="FechaColumn" msprop:Generator_UserColumnName="Fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="numero" msprop:Generator_ColumnVarNameInTable="columnnumero" msprop:Generator_ColumnPropNameInRow="numero" msprop:Generator_ColumnPropNameInTable="numeroColumn" msprop:Generator_UserColumnName="numero" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
