@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<root>
+  <database>Server=USDF15V0024;uid=espejopruebas;password=12345678;database=amqa;</database>
+  <mailConfigSmtpHost>nasa1smtp.mmc.com</mailConfigSmtpHost>
+  <mailConfigSmtpPort>25</mailConfigSmtpPort>
+  <mailConfigSmtpSsl>false</mailConfigSmtpSsl>
+  <mailConfigSmtpDefaultCredentiales>true</mailConfigSmtpDefaultCredentiales>
+  <mailConfigSmtpUser></mailConfigSmtpUser>
+  <mailConfigSmtpPassword></mailConfigSmtpPassword>
+  <mailConfigFrom>sistemamarsh@marsh.com</mailConfigFrom>
+  <mailConfigHeaderMail>E:/AUTOMARSH/V3QASite/Framework45/NotificacionesTickets/NotificacionesTickets/Imagenes/HEADER_NUEVO.png</mailConfigHeaderMail>
+  <mailConfigFooterMail>E:/AUTOMARSH/V3QASite/Framework45/NotificacionesTickets/NotificacionesTickets/Imagenes/FOOTER_NUEVO.png</mailConfigFooterMail>
+  <mailConfigURLMail>automarsh.com</mailConfigURLMail>
+</root>
