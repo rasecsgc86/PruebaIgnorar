@@ -1,0 +1,296 @@
+﻿<div class="panel panel-primary">
+    <div class="form-horizontal">
+        <div class="table-responsive">
+            <h4 class="h4 text-info" colspan="5">B&uacutesqueda</h4>
+            <table class="table">
+                <tr>
+                    <th>Aseguradora</th>
+                    <th>Producto</th>
+                    <th>Perfil</th>
+                    <th>Usuario</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="aseguradoraFiltro" id="aseguradoraFiltro" ng-model="selectAseguradorasFiltro" class="form-control" ng-required="true"
+                                ng-options="AseguradorasFiltro as AseguradorasFiltro.Nombre.toUpperCase() for AseguradorasFiltro in AseguradorasFiltro">
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="productoFiltro" id="productoFiltro" ng-model="selectProductosFiltro" class="form-control" ng-required="true"
+                                ng-options="ProductosFiltro as ProductosFiltro.Nombre.toUpperCase() for ProductosFiltro in ProductosFiltro">
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="perfilUsuario" id="perfilUsuario" ng-model="PerfilesUsuario" class="form-control" ng-required="true"
+                                ng-change="selPerfil()"
+                                ng-options="perfil as perfil.Nombre for perfil in perfilesUsuario track by perfil.PerfilUsuarioID">
+                            <option value="" selected>Seleccionar</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="nombreUsuario" id="nombreUsuario" ng-model="UsuariosPorPerfil"
+                                ng-change="selUsuario()"
+                                ng-options="usuario as usuario.Nombre for usuario in usuariosPorPerfil track by usuario.PersonaID" required>
+                            <option value="" selected>Seleccionar</option>
+                        </select>
+                    </td>
+                    <td>
+                        <a>  <span ng-click="BusquedaArchivos()" class="glyphicon glyphicon-search"></span></a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<input ng-if="UsuarioAdmin" type="button" class="btn btn-info" value="Nuevo" ng-click="NuevoConfigMultipleModal()" />
+
+<div class="panel panel-primary">
+    <div class="form-horizontal">
+        <div class="widthContentPanelReporte">
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed table-striped">
+                    <tr>
+                        <td class="h3 text-info" colspan="5">configuración de Emisión Múltiple y Captura Contratos</td>
+                        <td align="right" colspan="3"></td>
+                    </tr>
+                </table>
+                <table class="table table-hover table-condensed table-striped">
+                    <tr class="info">
+                        <th>Aseguradora</th>
+                        <th>Productos</th>
+                        <th>Perfil</th>
+                        <th>Usuario</th>
+                        <th>Permite Emisión Múltiple?</th>
+                        <th>Permite Captura Contratos?</th>
+                        <th>Acciones</th>
+                    </tr>
+                    <tr ng-repeat="tre in ConfigMultipleResponse">
+                        <td>{{ tre.Aseguradora  }}</td>
+                        <td>{{ tre.Producto  }}</td>
+                        <td>{{ tre.Perfil  }}</td>
+                        <td>{{ tre.Usuario  }}</td>
+                        <td>
+                            <div ng-if="tre.iPermiteEmisionMultiple == 1" >
+                                <input type="checkbox" name="chkEmiMultre" id="chkEmiMultre" checked disabled />
+                            </div>
+                            <div ng-if="tre.iPermiteEmisionMultiple == 0">
+                                <input type="checkbox" name="chkEmiMultre" id="chkEmiMultre" disabled />
+                            </div>
+                        </td>
+                        <td>
+                            <div ng-if="tre.iPermiteContrato == 1" >
+                                <input type="checkbox" name="chkEmiContratostre" id="chkEmiContratostre" checked disabled />
+                            </div>
+                            <div ng-if="tre.iPermiteContrato == 0" >
+                                <input type="checkbox" name="chkEmiContratostre" id="chkEmiContratostre" disabled  />
+                            </div>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td ng-if="UsuarioAdmin" data-toggle="tooltip" title="Eliminar Registro"><span ng-click="eliminarArchivo(tre)" class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td ng-if="UsuarioAdmin" data-toggle="tooltip" title="Editar Registro"><span ng-click="editarArchivo(tre)" class="glyphicon glyphicon-edit"></span></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="NuevoConfigMultipleModal" role="dialog" title="">
+    <div class="modal-dialog">
+        <form id="nuevoManualesForm" name="gestionTicketsForm" novalidate>
+            <div class="modal-content">
+                <div class="modal-header modal-header-info">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="cerrarNuevoConfigMultipleModal()">&times;</button>
+                    <h4 class="modal-title">Configura seleeccion de Emisión Múltiple y Captura de Contratos</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="table-layout: fixed">
+                        <tr>
+                            <td width="25%" ng-class="{'form-group has-feedback': isSelectAseguradorasRequired,
+                                    'form-group  has-warning has-feedback': !isSelectAseguradorasRequired}">
+                                <label class="control-label">
+                                    Aseguradora:
+                                </label>
+                                <label ng-show="Nuevo" class="labelRed"> *</label>
+                            </td>
+                            <td width="75%" ng-show="Nuevo">
+                                <select name="aseguradoraFiltroMod" id="aseguradoraFiltroMod" ng-model="selectAseguradorasFiltroMod" class="form-control" ng-required="true"
+                                        ng-options="AseguradorasFiltro as AseguradorasFiltro.Nombre.toUpperCase() for AseguradorasFiltro in AseguradorasFiltro">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </td>
+                            <td width="25%" ng-show="Edita">
+                                <label class="control-label">
+                                    {{AseguradoraSelect}}
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label">
+                                    Producto:
+                                </label>
+                                <label ng-show="Nuevo" class="labelRed"> *</label>
+                            </td>
+                            <td ng-show="Nuevo" ng-class="{'form-group has-feedback': isSelectProductosRequired,
+                                                                   'form-group has-warning has-feedback': !isSelectProductosRequired}">
+                                <select name="productoFiltroMod" id="productoFiltroMod" ng-model="selectProductosFiltroMod" class="form-control" ng-required="true"
+                                        ng-options="ProductosFiltro as ProductosFiltro.Nombre.toUpperCase() for ProductosFiltro in ProductosFiltro">
+                                    <option value="">Seleccionar</option>
+                                </select>
+                            </td>
+                            <td width="75%" ng-show="Edita">
+                                <label class="control-label">
+                                    {{ProductoSelect}}
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label">
+                                    Perfil:
+                                </label>
+                                <label ng-show="Nuevo" class="labelRed"> *</label>
+                            </td>
+                            <td ng-show="Nuevo" ng-class="{'form-group has-feedback': isSelectPerfilRequired,
+                                                                   'form-group has-warning has-feedback': !isSelectPerfilRequired}">
+
+                                <select name="perfilUsuarioMod" id="perfilUsuarioMod" ng-model="PerfilesUsuario" class="form-control" ng-required="true"
+                                        ng-change="selPerfilMod()"
+                                        ng-options="perfil as perfil.Nombre for perfil in perfilesUsuario track by perfil.PerfilUsuarioID">
+                                    <option value="" selected>Seleccionar</option>
+                                </select>
+                            </td>
+                            <td width="75%" ng-show="Edita">
+                                <label class="control-label">
+                                    {{PerfilSelect}}
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label class="control-label">
+                                    Usuario:
+                                </label>
+                                <label ng-show="Nuevo" class="labelRed"> *</label>
+                            </td>
+                            <td ng-show="Nuevo" ng-class="{'form-group has-feedback': isSelectUsuarioRequired,
+                                                                   'form-group has-warning has-feedback': !isSelectUsuarioRequired}">
+
+                                <select class="form-control" name="nombreUsuarioMod" id="nombreUsuarioMod" ng-model="UsuariosPorPerfil"
+                                        ng-change="selUsuarioMod()"
+                                        ng-options="usuario as usuario.Nombre for usuario in usuariosPorPerfil track by usuario.PersonaID" required>
+                                    <option value="" selected>Seleccionar</option>
+                                </select>
+                            </td>
+                            <td width="75%" ng-show="Edita">
+                                <label class="control-label">
+                                    {{UsuarioSelect}}
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table" style="table-layout: fixed">
+                        <tr >
+                             <td width="75%" ng-class="{'form-group has-feedback': isSelectEmisionMultipleRequired,
+                                                                   'form-group has-warning has-feedback': !isSelectEmisionMultipleRequired}">
+                                <label class="control-label">
+                                    ¿Permite Emisión Múltiple? (opcional):
+                                </label>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="checkbox" name="chkEmiMul" id="chkEmiMul"  ng-model="confirmedMultiple" ng-checked="confirmedMultiple" ng-change="changeConf()" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-class="{'form-group has-feedback': isSelectContratosRequired,
+                                                                   'form-group has-warning has-feedback': !isSelectContratosRequired}">
+                                <label class="control-label">
+                                    ¿Permite Capura de Contratos?: (opcional)
+                                </label>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="checkbox" name="chkEmiContratos" id="chkEmiContratos" ng-model="confirmedContratos" ng-checked="confirmedContratos" ng-change="changeConf()" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="guardarInformacion()">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cerrarNuevoConfigMultipleModal()">Cancelar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="modal" id="errorModal" title="Error" style="overflow-y: scroll;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modalHead-warning">
+                <button type="button" class="close" ng-click="cerrarErrorModal()" aria-hidden="true">x</button>
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <alert type="warning" show="true" dismissable="false" class="text-left">
+                        {{mensajeError}}
+                        <!--<div ng-show="true" class="alert alert-warning alert-dismissable">
+                            <div>
+                                <div id="msgModalErrors" class="ng-scope">{{mensajeError}}</div>
+                            </div>
+                        </div>-->
+                    </alert>
+                </div>
+                <div class="form-group text-right">
+                    <button ng-click="cerrarErrorModal()" class="btn btn-warning">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="exitoModal" title="Error" style="overflow-y: scroll;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modalHead-info">
+                <button type="button" class="close" ng-click="cerrarExitoModal()" aria-hidden="true">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <alert type="warning" show="true" dismissable="false" class="text-left">
+                        {{mensajeExito}}
+                    </alert>
+                </div>
+                <div class="form-group text-right">
+                    <button ng-click="cerrarExitoModal()" class="btn btn-info">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

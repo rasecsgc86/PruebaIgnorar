@@ -1,0 +1,836 @@
+/**************************************
+ ********* Estilos Generales **********
+ **************************************/
+/*Menu principal*/
+.menumain > li > a {
+    color: #46555f !important;
+    font-size: 16pt;
+    font-family: "Slate W02 Bold", Arial, sans-serif;
+}
+
+.dropdown-menu > li > a {
+    font-size: 14pt;
+    font-family: "Slate W02 Bold", Arial, sans-serif;
+}
+
+/**/
+
+.inputText {
+    width: 100%;
+    border-bottom-width: 1px;
+    border-radius: 5px;
+    border-color: #C8C8C8;
+}
+
+.btnCalendar { width: 6%; }
+
+.comboBox {
+    border-radius: 5px;
+    border-width: 1.4px;
+    border-color: #C8C8C8;
+    width: 100%;
+}
+
+.labelOrange {
+    color: #f48132;
+    -webkit-text-fill-color: #f48132;
+    font-weight: bold;
+}
+
+.labelBlue {
+    -webkit-text-fill-color: #00A8C8;
+    font-weight: bold;
+}
+
+.labelRed {
+    color: Red;
+    font-weight: bold;
+}
+
+.tituloLegend {
+    background-color: #f48132;
+    font-family: "Slate W02 Book";
+    font-size: 14pt;
+    color: #FFF;
+    font-weight: bold;
+    border-radius: 6px;
+    font-size: 17px;
+    margin: 0 0 -15px 3%;
+    width: 40%;
+    text-align: left;
+}
+
+/*Estilos de la parte izquierda*/
+
+.sinpadding [class*="col-"] { padding: 0; }
+
+.contenedorForm {
+    height: auto;
+    border: 3px solid #f48132;
+    border-radius: 6px;
+    padding: 10px 30px 10px 10px;
+}
+
+.contenedorForm img {
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+/*Estilos de la parte derecha */
+
+.borderBContent {
+    width: 100% !important;
+    border: 1px solid #f48132;
+    border-radius: 6px;
+    padding-top: 20px;
+}
+
+.tituloDForm {
+    background-color: #f48132;
+    font-family: "Slate W02 Book";
+    color: #FFF;
+    font-size: 14pt;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 5px;
+    margin: 0 10% -15px 10%;
+    z-index: 10;
+}
+
+.btnFntB {
+    background-color: #f48132 !important;
+    color: #FFF;
+    font-weight: bold;
+    margin: 0;
+    width: 80%;
+    font-size: 15px;
+}
+
+.rowDM { margin-bottom: 20px !important; }
+
+.tableInfo {
+    font-size: 14pt;
+    margin: 0 3% 0 3%;
+    border-collapse: separate;
+    border-spacing: 7px;
+}
+
+.tableInfo td:first-child {
+    color: #46555f;
+    font-weight: bold;
+    font-family: "Slate W01 Bold";
+}
+
+.tableInfor td:last-child {
+    color: #46555f;
+    font-family: "Slate W02 Book";
+    font-size: 14pt;
+}
+
+/*Estilos responsivos*/
+
+@media screen and (min-width: 300px) {
+    .btnFntB {
+        margin: 0 0 0 10%;
+        width: 90%;
+        font-size: 10px;
+        font-weight: bold;
+        -webkit-text-fill-color: #FFF;
+    }
+
+    .fontMovil { font-size: 7pt !important; }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .btnFntB {
+        margin: 0 0 0 10%;
+        width: 90%;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .fontMovil { font-size: 11pt !important; }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .btnFntB {
+        margin: 0 0 0 10%;
+        width: 90%;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .fontMovil { font-size: 14pt !important; }
+}
+
+@media (min-width: 1200px) {
+    .btnFntB {
+        margin: 0 0 0 10%;
+        width: 90%;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .fontMovil { font-size: 14pt !important; }
+}
+
+/*******************************************
+ ****** Nuevos estilos cotizador.html ******
+ *******************************************/
+
+.lineaSimple {
+    margin: 1% 0 1% 0;
+    width: 100%;
+    outline: solid 0.5px #FFBB8D;
+    border-color: #FFBB8D
+}
+
+.lineaDoble {
+    margin: 1% 0 1% 0;
+    width: 100%;
+    outline: solid 1.5px #FFBB8D;
+    border-color: #FFBB8D
+}
+
+.widthModal-Info { width: 80%; }
+
+.widthLabel { width: 90%; }
+
+.widthLabelP { width: 89%; }
+
+.widthPanelComun { width: 109px; }
+
+.widthPanelCobEsp { width: 44%; }
+
+.marginTituloPanel {
+    margin-top: -9px;
+    padding: 0;
+}
+
+.sinPadding { padding: 0; }
+
+.paddingLabel { padding: 2px 15px 2px 0px; }
+
+.paddingRight { padding: 0px 15px 0px 0px; }
+
+.alingCenter { text-align: center; }
+
+.marginDown { margin: 0 0 1.3% }
+
+.marginNull { margin: 0px -3px 0px; }
+
+.heightImg { height: 35px; }
+
+.heightCobertura {
+    height: 27px;
+    padding-top: 3px;
+}
+
+.topEncabezado { top: 3px; }
+
+.labelPanel {
+    height: 35px;
+    padding: 10px;
+}
+
+.topImgAseg { top: 9px }
+
+.widthTitle_13 {
+    width: 13%;
+    text-align: left;
+}
+
+.widthTitle_15 {
+    width: 15%;
+    text-align: left;
+}
+
+.widthTitle_24 {
+    width: 24%;
+    text-align: left;
+}
+
+.comboCoberturas { width: 60%; }
+
+.facturaText { width: 60%; }
+
+/*****************************************
+ ****** Nuevos estilos emision.html ******
+ *****************************************/
+
+.radioList input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.radioList .inputText {
+    margin-left: 10px;
+    width: 50%;
+}
+
+.control:not(.radioList) input[type="text"] { width: 100%; }
+
+legend span {
+    display: block;
+    text-align: center;
+}
+
+.form-horizontal .control-label { text-align: left; }
+
+.img {
+    border-bottom-width: 1px;
+    border-radius: 5px;
+    border-color: #C8C8C8;
+    margin-top: -5px;
+    margin-left: 50px;
+    transform: scale(.7, .7)
+}
+
+.btn-calendar {
+    border-bottom-width: 1px;
+    border-radius: 5px;
+    margin: -5px -6px;
+    transform: scale(.7, .7);
+}
+
+.emitir .inputText { text-align: center; }
+
+.margenModal { padding: 0 15px; }
+
+textarea { resize: none; }
+
+.ampliaCalendario { z-index: 100000; }
+
+/*******************************************
+ ****** Nuevos estilos benchmark.html ******
+ *******************************************/
+
+.contentGray {
+    border: 1px solid #CCD0D1;
+    width: 100%;
+    padding: 10px;
+    margin: 20px 0px 20px 0px;
+    text-align: justify;
+    padding: 0 !important;
+}
+
+.contentGray p {
+    margin: 10px;
+    font-size: 14pt;
+}
+
+.flex-container {
+    width: 100%;
+    border: 1px solid #CCD0D1;
+    height: auto;
+    display: flex;
+    display: -ms-flexbox; /*IE10 implementation*/
+    flex-wrap: wrap;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.flex-item {
+    text-align: center;
+    width: 33.333333333333333333333333335%;
+    float: left;
+    height: 100%;
+    /*flex-grow:1;
+*/
+    border-right: 1px solid #CCD0D1;
+}
+
+.contentInfo {
+    padding: 0px !important;
+    margin: 0px !important;
+    border-bottom: 1px solid #CCD0D1;
+    height: 120px;
+}
+
+.contentInfoImg { margin: 15px; }
+
+.contentInfoImg .img-responsive { margin: 0 auto; }
+
+.contentInfoImg img {
+    margin: 0 auto !important;
+    vertical-align: middle;
+}
+
+.txtPaq {
+    color: #f48132;
+    text-transform: uppercase;
+    margin: 0px;
+    font-size: 13pt;
+    font-family: "Slate W02 Book";
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.txtInfo { color: #00A8C8; }
+
+.txtInfo:hover { color: #fff; }
+
+.txtCant {
+    color: #46555f;
+    text-align: center;
+    font-family: "Slate W02 Bold", Arial, sans-serif;
+    margin: 15px 5px 15px 5px;
+}
+
+.contentInfoBtn {
+    border-radius: 0px !important;
+    height: 100px !important;
+    width: 100% !important;
+}
+
+.contentInfoBtn:hover {
+    background-color: #f48132;
+    cursor: pointer;
+}
+
+.contentInfoBtn:active {
+    background-color: #f48132;
+    cursor: pointer;
+}
+
+.contentInfoPk {
+    width: 100%;
+    margin: 0px;
+    height: 100px;
+    border-bottom: 1px solid #CCD0D1;
+}
+
+.contentInfoBtn:hover .txtPaq { color: #fff; }
+
+.txtCant:hover { text-decoration: underline; }
+
+.flex-containerT {
+    width: 100%;
+    height: 40px;
+    background-color: #f48132;
+    border: 1px solid #CCD0D1;
+    border-bottom: 0px;
+    display: flex;
+    display: -ms-flexbox; /*IE10 implementation*/
+    flex-wrap: wrap;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.flex-itemT {
+    text-align: center;
+    /*flex-grow:1;*/
+    vertical-align: middle;
+    border-right: 1px solid #354248;
+    color: #fff;
+    padding: 10px;
+    height: 100%;
+    font-family: "Slate W01 Bold" !important;
+    font-size: 14pt;
+}
+
+.flex-itemT:hover { background-color: #A75820; }
+
+/*Menu */
+
+.flex-containerM {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #00A8C8;
+    display: flex;
+    display: -ms-flexbox; /*IE10 implementation*/
+    flex-wrap: wrap;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-bottom: 30px !important;
+    position: relative !important;
+}
+
+.flex-itemM {
+    text-align: center;
+    width: 25%;
+    height: 100%;
+    padding: 10px !important;
+    float: left;
+    border-right: 1px solid #007CA9;
+    font-size: 16pt;
+    font-family: "Slate W02 Bold", Arial, sans-serif;
+}
+
+.flex-containerM .flex-itemM:last-child { border: 0px; }
+
+/*Menu de cotizador*/
+
+.flexImg {
+    margin: 0px;
+    position: absolute;
+    top: 0px;
+    width: 25%;
+    height: 56px;
+    z-index: -30;
+}
+
+.flexImg-comp { left: 25%; }
+
+.flexImg-cot { left: 0%; }
+
+.flexImg-emit { left: 50%; }
+
+.flexImg-pag { left: 0%; }
+
+.flexImg-imp { left: 75%; }
+
+.flexTxtM-cot-true, .flexTxtM-comp-true, .flexTxtM-emit-true, .flexTxtM-pag-true, .flexTxtM-imp-true { color: #fff !important; }
+
+.flexTxtM-cot-false, .flexTxtM-comp-false, .flexTxtM-emit-false, .flexTxtM-pag-false, .flexTxtM-imp-false { color: #00A8C8 !important; }
+
+/*Estilos coberturas*/
+
+.tableCob {
+    color: #999;
+    margin: 0 !important;
+}
+
+.tableCob td:first-child { text-decoration: underline; }
+
+/*Estilos para el cotizador en general*/
+
+.nav-cotizador { border: 1px solid #00A8C8; }
+
+.nav-cotizador ul li { border-left: 1px solid #00A8C8; }
+
+.itemNav > li > a {
+    color: #00A8C8;
+    font-size: 16pt;
+    font-family: "Slate W02 Bold", Arial, sans-serif;
+}
+
+.sNav > li > a:focus, .nav > li > a:active {
+    text-decoration: none;
+    background-color: pink !important;
+    color: #fff;
+    font-weight: bold;
+}
+
+.itemNav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    color: #fff;
+    background-color: #00A8C8 !important;
+}
+
+.nav-cotizador span { color: #00A8C8; }
+
+.navH-cotizador { height: 20px !important; }
+
+.tittleContentG {
+    color: #f48132;
+    text-transform: uppercase;
+    margin: 2px;
+}
+
+.btnCotizador {
+    font-family: "Slate W01 Bold" !important;
+    font-size: 12pt;
+    background-color: #f48132;
+    color: #fff;
+    text-transform: uppercase;
+    vertical-align: middle;
+    text-align: center;
+    margin: 5px;
+}
+
+.contentBtns {
+    width: 100%;
+    margin: 5%;
+    text-align: center;
+}
+
+/*Menu del cotizador*/
+
+.tittle {
+    font-family: "Slate W01 Bold" !important;
+    font-size: 18pt !important;
+    color: #ffffff !important;
+}
+
+html, body {
+    font-family: "Slate W02 Book" !important;
+    font-size: 13pt !important;
+    color: #46555f;
+}
+
+label { font-size: 13pt; }
+
+.modalHead-infoMarsh {
+    width: 100%;
+    background-color: #f48132;
+    color: white;
+    font-weight: bold
+}
+
+.modalHead-success {
+    color: #fff;
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #5cb85c;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modalHead-warning {
+    color: #fff;
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #f0ad4e;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modalHead-danger {
+    color: #fff;
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #d9534f;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modalHead-info {
+    color: #fff;
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #5bc0de;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modalHead-primary {
+    color: #fff;
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    background-color: #428bca;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+/*********************************************************************
+*Estilos del panel 
+**********************************************************************/
+
+.flex-containerP {
+    width: 100%;
+    display: flex;
+    display: -ms-flexbox; /*IE10 implementation*/
+    flex-wrap: wrap;
+    padding: 0 !important;
+}
+
+.my-tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 0px;
+}
+
+.my-tooltip .my-tooltiptext {
+    visibility: hidden;
+    /*  padding: 5px 0;
+        word-wrap: break-word;
+    */
+    max-width: 600px;
+    width: auto;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 7px;
+    padding: 5px 10px;
+    
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.my-tooltip:hover .my-tooltiptext { visibility: visible; }
+
+.transformChk { transform: scale(0.75); }
+
+.transformImgAseg { transform: scale(2); }
+
+.NA {
+    color: red;
+    text-align: center;
+    height: 27px;
+    padding-top: 4px;
+    font-family: Gabriola;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.infoDetalle {
+    width: 20px !important;
+    height: 15px !important;
+}
+
+.separador {
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.lineSeparador {
+    margin-left: 12px;
+    margin-right: 12px
+}
+
+.ui-widget.ui-widget-content { z-index: 10000000; }
+
+.divInfo {
+    position: relative;
+    top: -50px;
+    left: -20px;
+    width: 20px;
+    height: 20px;
+    float: right;
+    margin-right: 10px;
+}
+
+.divInfo:hover .contentInfoBtn {
+    background-color: #f48132;
+    cursor: pointer;
+}
+
+.divInfo:hover .txtPaq { color: #fff; }
+
+.montoPkt {
+    width: 100%;
+    text-align: center;
+}
+
+.flex-itemTActive {
+    background-color: #A75820;
+    background-color: red;
+    text-align: center;
+    /*flex-grow:1;*/
+    vertical-align: middle;
+    border-right: 1px solid #354248;
+    color: #fff;
+    padding: 10px;
+    height: 100%;
+    font-family: "Slate W01 Bold" !important;
+    font-size: 14pt;
+}
+
+.popover {
+    display: inline-block !important;
+    max-width: 1500px !important;
+}
+
+.btnInfo {
+    position: relative;
+    top: -38px;
+    left: 110px;
+    background-image: url("../img/cotizador/info-azul.png");
+    background-repeat: no-repeat;
+    background-size: 90% 100%;
+    background-position: center;
+    height: 20px;
+    width: 20px;
+    border: 0px !important;
+    border-radius: 10px !important;
+}
+
+.wordWraps { word-wrap: break-word; }
+
+.headTicket {
+    height: 50px;
+    padding-top: 8px;
+}
+
+.headComentTicket {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+/*Estilos de Tickets*/
+
+.contentPanelReporte { padding: 1% 1%; }
+
+.panelReporte { padding: 1% 2%; }
+
+.widthContentPanelReporte { max-width: 94.12rem !important; }
+
+.formBuscarReportes {
+    margin-bottom: 15px;
+    padding: 0 1%;
+}
+
+.BordeGris { border-color: #CCCCCC !important; }
+
+.contentBtnTickets {
+    width: 100%;
+    padding: 5px;
+    float: right;
+}
+
+.contentBtnTickets input {
+    margin: 7px;
+    float: right;
+}
+
+::-webkit-input-placeholder {
+    color: #C0C0C0;
+    font-style: italic;
+}
+
+/* WebKit */
+
+:-moz-placeholder {
+    color: #C0C0C0;
+    font-style: italic;
+}
+
+/* Firefox 18- */
+
+::-moz-placeholder {
+    color: #C0C0C0;
+    font-style: italic;
+}
+
+/* Firefox 19+ */
+
+:-ms-input-placeholder {
+    color: #C0C0C0;
+    font-style: italic;
+}
+
+/* IE 10+ */
+
+.pktNumero {
+    font-size: 14px;
+    margin-left: 10px !important;
+    color: #46555f;
+    float: right !important;
+}
+
+.fechaRegistro { width: 10%; }
+
+.centrarTabla th { background: black; }
