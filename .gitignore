@@ -12,6 +12,9 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+#Rutas de angular
+!bower_components/angular-ui-router/release/*.js
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -328,6 +331,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-
-#Rutas de angular
-!bower_components/angular-ui-router/release/*.js
