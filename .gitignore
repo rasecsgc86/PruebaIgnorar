@@ -330,4 +330,4 @@ ASALocalRun/
 .mfractor/
 
 #Rutas de angular
-!bower_components/
+!bower_components/**
