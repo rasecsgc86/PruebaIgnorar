@@ -330,4 +330,4 @@ ASALocalRun/
 .mfractor/
 
 #Rutas de angular
-!bower_components/angular-ui-router/release/**
+!bower_components/angular-ui-router/release/*.js
