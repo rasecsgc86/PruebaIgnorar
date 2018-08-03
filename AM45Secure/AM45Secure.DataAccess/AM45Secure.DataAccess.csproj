@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6647E386-5220-4DF3-8ABB-3FEFC4A9F6A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AM45Secure.DataAccess</RootNamespace>
+    <AssemblyName>AM45Secure.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Desarrollo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Desarrollo\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\AM45Secure.Commons\libs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataAccess\CapaDatos\db.cs" />
+    <Compile Include="DataAccess\CapaDatos\Sumario.cs" />
+    <Compile Include="DataAccess\CapaDatos\VehiculosCapturaEmision.cs" />
+    <Compile Include="DataAccess\Comparador\ComparadorDataAccess.cs" />
+    <Compile Include="DataAccess\Configurador\ConfiguradorDataAccess.cs" />
+    <Compile Include="DataAccess\Cotizador\CotizadorDataAccess.cs" />
+    <Compile Include="DataAccess\Emitir\EmitirDataAccess.cs" />
+    <Compile Include="DataAccess\Generic\DataAccess.cs" />
+    <Compile Include="DataAccess\Generic\GenericDataAccess.cs" />
+    <Compile Include="DataAccess\ImagenCliente\ImagenClienteDataAccess.cs" />
+    <Compile Include="DataAccess\Imprimir\ImprimirDataAccess.cs" />
+    <Compile Include="DataAccess\Manuales\ManualesDataAccess.cs" />
+    <Compile Include="DataAccess\Seguridad\SeguridadDataAccess.cs" />
+    <Compile Include="DataAccess\Tickets\CalendarioTicketsDataAccess.cs" />
+    <Compile Include="DataAccess\Tickets\ConfigurarParametrosTicketsDataAccess.cs" />
+    <Compile Include="DataAccess\Tickets\GestionDataAccess.cs" />
+    <Compile Include="DataAccess\Tickets\ReporteDataAccess.cs" />
+    <Compile Include="DataAccess\Tickets\SeguimientoTicketsDataAccess.cs" />
+    <Compile Include="Entidades\Comparador\NeCoberturasCotizacion  .cs" />
+    <Compile Include="Entidades\Comparador\NePaquetesAseguradora.cs" />
+    <Compile Include="Entidades\Comparador\NotasImportantes.cs" />
+    <Compile Include="Entidades\Comparador\SpEmiSelDetalleCoberturasIndividuales.cs" />
+    <Compile Include="Entidades\Comparador\VwCotSelCobPaqAsegProd.cs" />
+    <Compile Include="Entidades\Comparador\VwCotSelFormasPagoProducto.cs" />
+    <Compile Include="Entidades\Comparador\VwCotSelRepCotizacion.cs" />
+    <Compile Include="Entidades\Comparador\VwCotSelSolicitudCotizacionServTipUnidad.cs" />
+    <Compile Include="Entidades\Comunes\AM_VersionSistema.cs" />
+    <Compile Include="Entidades\Comunes\CatDiasInhabiles.cs" />
+    <Compile Include="Entidades\Comunes\CoberturasCotizacion.cs" />
+    <Compile Include="Entidades\Comunes\FechaSistema.cs" />
+    <Compile Include="Entidades\Comunes\NePrimasCotizacion.cs" />
+    <Compile Include="Entidades\Comunes\PerfilesFlexible.cs" />
+    <Compile Include="Entidades\Comunes\Productos.cs" />
+    <Compile Include="Entidades\Comunes\ProductosFlex.cs" />
+    <Compile Include="Entidades\Comunes\TicketsDatosContactos.cs" />
+    <Compile Include="Entidades\Comunes\TicketsEstatus.cs" />
+    <Compile Include="Entidades\Comunes\ComentariosTicket.cs" />
+    <Compile Include="Entidades\Comunes\RegistrosTicket.cs" />
+    <Compile Include="Entidades\Comunes\ArchivosTickets.cs" />
+    <Compile Include="Entidades\Comunes\CatDiasHabiles.cs" />
+    <Compile Include="Entidades\Comunes\CatEstatusTickets.cs" />
+    <Compile Include="Entidades\Comunes\Elementos.cs" />
+    <Compile Include="Entidades\Comunes\NeCoberturasInciso.cs" />
+    <Compile Include="Entidades\Comunes\NeCotizacion.cs" />
+    <Compile Include="Entidades\Comunes\NeIncisos.cs" />
+    <Compile Include="Entidades\Comunes\NeIncisosEndoso.cs" />
+    <Compile Include="Entidades\Comunes\NePersonasInciso.cs" />
+    <Compile Include="Entidades\Comunes\NePersonas.cs" />
+    <Compile Include="Entidades\Comunes\NePrimasInciso.cs" />
+    <Compile Include="Entidades\Comunes\NeVehiculoInciso.cs" />
+    <Compile Include="Entidades\Comunes\SolicitudCotizacion.cs" />
+    <Compile Include="Entidades\Comunes\TiposTicketsClientes.cs" />
+    <Compile Include="Entidades\Comunes\Vehiculos.cs" />
+    <Compile Include="Entidades\Comunes\VwCotSelClientProdAgenAseg.cs" />
+    <Compile Include="Entidades\Comunes\VwCotSelCoberturasCotizadas.cs" />
+    <Compile Include="Entidades\Comunes\VwCotSelCodigoPostal.cs" />
+    <Compile Include="Entidades\Comunes\VwCotSelEstados.cs" />
+    <Compile Include="Entidades\Comunes\vwCOTSelPrimasCotizacion.cs" />
+    <Compile Include="Entidades\Cotizador\CountUtilidad.cs" />
+    <Compile Include="Entidades\Cotizador\DatosCotizante.cs" />
+    <Compile Include="Entidades\Cotizador\SpCotSelExisteDaniosMaterialesFlex.cs" />
+    <Compile Include="Entidades\Cotizador\VehiculosCapturaEmision.cs" />
+    <Compile Include="Entidades\Cotizador\VwCotSelClientesUsuario.cs" />
+    <Compile Include="Entidades\Cotizador\VwCotSelProdsFlexDistinctCobertAseg.cs" />
+    <Compile Include="Entidades\Cotizador\VwCotSelProdsFlexCobertAseg.cs" />
+    <Compile Include="Entidades\Cotizador\VwCotSelProductosClienteUsuario.cs" />
+    <Compile Include="Entidades\Cotizador\VwCotSelReglaProductoCliente.cs" />
+    <Compile Include="Entidades\Cotizador\VwCotSelSerie.cs" />
+    <Compile Include="Entidades\Imprimir\AseguradoraPaquete.cs" />
+    <Compile Include="Entidades\Seguridad\spCOnsultaUsuarioLogin.cs" />
+    <Compile Include="Entidades\Seguridad\SpTicConsultaMenus.cs" />
+    <Compile Include="Entidades\Tickets\CatDiasHabilesEntidad.cs" />
+    <Compile Include="Entidades\Tickets\CatOrigenTickets.cs" />
+    <Compile Include="Entidades\Tickets\CorreosCopiaTickets.cs" />
+    <Compile Include="Entidades\Tickets\TiposTicket.cs" />
+    <Compile Include="Entidades\Tickets\VwAsegModel.cs" />
+    <Compile Include="Entidades\Tickets\VwContarEstatusReporteTickets.cs" />
+    <Compile Include="Entidades\Tickets\VwNUEListaClientesProducto.cs" />
+    <Compile Include="Entidades\Tickets\VwREGListaTicket.cs" />
+    <Compile Include="Entidades\Tickets\VwTicConsultarDatosCorreo.cs" />
+    <Compile Include="Entidades\Tickets\VwTicConsultaResponsables.cs" />
+    <Compile Include="Entidades\Tickets\VwTicConsultarParametrosTicketsCliente.cs" />
+    <Compile Include="Entidades\Tickets\VwTicketsRepSelTicketsReporte.cs" />
+    <Compile Include="Entidades\Tickets\VwTICKETSRepSelTicketsReporteExcel.cs" />
+    <Compile Include="Entidades\Tickets\VwTicObtenerInformacionTickets.cs" />
+    <Compile Include="Entidades\Tickets\VwTicSeguimientoTickets.cs" />
+    <Compile Include="Entidades\Tickets\VwTicSelAgencias.cs" />
+    <Compile Include="Entidades\Tickets\VwTicSelCaratulas.cs" />
+    <Compile Include="Entidades\Tickets\VwTicSeleccionarComentariosTickets.cs" />
+    <Compile Include="Entidades\Tickets\VwTicSelEstatusTicket.cs" />
+    <Compile Include="IDataAccess\IComparador\IComparadorDataAccess.cs" />
+    <Compile Include="IDataAccess\IConfigurador\IConfiguradorDataAccess.cs" />
+    <Compile Include="IDataAccess\ICotizador\ICotizadorDataAccess.cs" />
+    <Compile Include="IDataAccess\IEmitir\IEmitirDataAccess.cs" />
+    <Compile Include="IDataAccess\IGeneric\IGenericDataAccess.cs" />
+    <Compile Include="IDataAccess\IimagenCliente\IimagenClienteDataAccess.cs" />
+    <Compile Include="IDataAccess\IImprimir\IImprimirDataAccess.cs" />
+    <Compile Include="IDataAccess\IManuales\IManualesDataAccess.cs" />
+    <Compile Include="IDataAccess\ISeguridad\ISeguridadDataAccess.cs" />
+    <Compile Include="IDataAccess\Tickets\ICalendarioTicketsDataAcces.cs" />
+    <Compile Include="IDataAccess\Tickets\IConfigurarParametrosTicketsDataAccess.cs" />
+    <Compile Include="IDataAccess\Tickets\IGestionDataAccess.cs" />
+    <Compile Include="IDataAccess\Tickets\IReporteDataAccess.cs" />
+    <Compile Include="IDataAccess\Tickets\ISeguimientoTicketsDataAccess.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AM45Secure.Commons\AM45Secure.Commons.csproj">
+      <Project>{34086ac4-ae26-4ac7-8110-7e9deee59353}</Project>
+      <Name>AM45Secure.Commons</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entidades\Configurador\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
