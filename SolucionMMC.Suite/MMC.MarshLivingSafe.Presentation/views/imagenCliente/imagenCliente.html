@@ -1,0 +1,204 @@
+﻿<div class="panel panel-primary">
+    <div class="form-horizontal">
+        <div class="table-responsive">
+            <h4 class="h4 text-info" colspan="5">B&uacutesqueda de Imagen de Cliente</h4>
+            <table class="table">
+                <tr>
+                    <th>Cliente</th>
+               
+
+                </tr>
+                <tr>
+
+                    <td>
+
+                        <select name="clienteFiltro" id="clienteFiltro" ng-model="selectClientesFiltro" class="form-control" ng-required="true"
+                                ng-options="ClientesFiltro as ClientesFiltro.Nombre.toUpperCase() for ClientesFiltro in ClientesFiltro">
+                            <option value="" disabled="disabled">Seleccionar</option>
+                        </select>
+                    </td>
+                
+
+                    <td>
+                        <a>  <span ng-click="BusquedaArchivos()" class="glyphicon glyphicon-search"></span></a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<input ng-if="tieneImagen==false" type="button" class="btn btn-info" value="Agregar Imagen" ng-click="nuevoManualesModal()" />
+
+<div class="panel panel-primary">
+    <div class="form-horizontal">
+        <div class="widthContentPanelReporte">
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed table-striped">
+                    <tr>
+                        <td class="h3 text-info" colspan="5">Imagen del Cliente</td>
+                      
+                    </tr>
+
+                </table>
+                <table class=" table table-hover table-condensed table-striped">
+
+                    <tr class="info">
+                        <th>No.</th>
+                        <th class="widthTitle_13">Fecha Carga</th>
+
+                        <th>Imagen Actual</th>
+                       
+                      
+                        <th>Acciones</th>
+
+                    </tr>
+                    <tr ><!--ng-repeat="tre in ImagenResponse"-->
+                        <!--Se agrega link para dar seguimiento al ticket-->
+                        <td>
+                            <!--<a ui-sref="seguimientoTickets({TicketId:tre.TicketId,isCarga:1})">{{ tre.TicketId }}</a>-->
+                            {{ ImagenResponse.Id}}
+
+
+                        </td>
+                        <td class="fechaRegistro">{{ImagenResponse.Fecha | date:'dd/MM/yyyy HH:mm:ss a'}}</td>
+
+                        <td>
+                            <img width="200" height="220" id="ImagenCliente"  class="img-rounded" src="data:image/png;base64,{{ImagenResponse.imagen64}}">
+                        </td>
+                       
+                   
+
+
+                        <td ng-if="ImagenResponse.Id>0">
+
+                            <table>
+                                <tr >
+                                    <td ng-if="UsuarioAdmin" data-toggle="tooltip" title="Editar"><span ng-click="editarArchivo(ImagenResponse.Id)" class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td ng-if="UsuarioAdmin" data-toggle="tooltip" title="Eliminar Archivo"><span ng-click="eliminarArchivo(ImagenResponse.Id)" class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                               
+                                </tr>
+                            </table>
+
+                        </td>
+
+
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+
+
+
+
+
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="nuevoManualesModal" role="dialog" title="Nuevo Manual">
+    <div class="modal-dialog">
+        <form id="nuevoManualesForm" name="gestionTicketsForm" novalidate>
+            <div class="modal-content">
+                <div class="modal-header modal-header-info">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="cerrarNuevoManualesModal()">&times;</button>
+                    <h4 class="modal-title">Cargar Imagen Cliente</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="table-layout: fixed">
+
+  
+                        <tr>
+                            <td colspan="2">
+                                <div class="row sinpadding">
+                                    <div class="col-md-9">
+                                        <div style="position: relative;" ng-class="{'form-group has-feedback': isArchivoRequired,
+                'form-group has-warning has-feedback': !isArchivoRequired}">
+                                            <label class="control-label">
+                                                Subir archivo
+                                            </label>
+
+                                            <!--<input type="file" id="file" name="file" ng-files="cargarArchivos($files)" multiple/>-->
+                                            <input type="file" id="file" name="file" ng-model-options="ArchivoModel" nv-file-select="" uploader="uploader" style="position: absolute; left: 0px; z-index: 1; width: 97%;" accept=".PNG,.JPG,.JPEG"/>
+                                            <span id="txtFile" class="label label-warning">Seleccione un Archivo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="guardarInformacion()">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cerrarNuevoManualesModal()">Cancelar</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="modal" id="errorModal" title="Error" style="overflow-y: scroll;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modalHead-warning">
+                <button type="button" class="close" ng-click="cerrarErrorModal()" aria-hidden="true">x</button>
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <alert type="warning" show="true" dismissable="false" class="text-left">
+                        {{mensajeError}}
+                        <!--<div ng-show="true" class="alert alert-warning alert-dismissable">
+                            <div>
+                                <div id="msgModalErrors" class="ng-scope">{{mensajeError}}</div>
+                            </div>
+                        </div>-->
+                    </alert>
+                </div>
+                <div class="form-group text-right">
+                    <button ng-click="cerrarErrorModal()" class="btn btn-warning">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="exitoModal" title="Error" style="overflow-y: scroll;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modalHead-info">
+                <button type="button" class="close" ng-click="cerrarExitoModal()" aria-hidden="true">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <alert type="warning" show="true" dismissable="false" class="text-left">
+                        {{mensajeExito}}
+                    </alert>
+                </div>
+                <div class="form-group text-right">
+                    <button ng-click="cerrarExitoModal()" class="btn btn-info">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
