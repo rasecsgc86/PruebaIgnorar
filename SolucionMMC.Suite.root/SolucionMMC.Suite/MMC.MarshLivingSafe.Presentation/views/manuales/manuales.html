@@ -1,0 +1,316 @@
+﻿<div class="panel panel-primary">
+    <div class="form-horizontal">
+        <div class="table-responsive">
+            <h4 class="h4 text-info" colspan="5">B&uacutesqueda</h4>
+            <table class="table">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Categor&iacutea</th>
+                    <th>Texto B&uacutesqueda</th>
+
+                </tr>
+                <tr>
+
+                    <td>
+
+                        <select name="clienteFiltro" id="clienteFiltro" ng-model="selectClientesFiltro" class="form-control" ng-required="true"
+                                ng-options="ClientesFiltro as ClientesFiltro.Nombre.toUpperCase() for ClientesFiltro in ClientesFiltro">
+                            <option value="" disabled="disabled">Seleccionar</option>
+                        </select>
+                    </td>
+
+
+                    <td>
+                        <select name="productoFiltro" id="productoFiltro" ng-model="selectProductosFiltro" class="form-control" ng-required="true"
+                                ng-options="ProductosFiltro as ProductosFiltro.Nombre.toUpperCase() for ProductosFiltro in ProductosFiltro">
+                            <option value="">Seleccionar(Opcional para algunos registros)</option>
+                        </select>
+                    </td>
+
+                    <td colspan="1">
+                        <select name="categoriaFiltro" id="categoriaFiltro" ng-model="selectCategoriaFiltro" class="form-control" ng-required="true"
+                                ng-options="CstegoriasFiltro as CstegoriasFiltro.NombreCategoria.toUpperCase() for CstegoriasFiltro in CstegoriasFiltro">
+                            <option value="" disabled="disabled">Seleccionar</option>
+                        </select>
+                    </td>
+
+                    <td colspan="1">
+                        <input type="text" class="form-control" id="textoFiltro" ng-model="textoFiltro" placeholder="Nombre Documento (Opcional)" value=" ">
+
+                    </td>
+
+                    <td>
+                        <a>  <span ng-click="BusquedaArchivos()" class="glyphicon glyphicon-search"></span></a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<input ng-if="UsuarioAdmin" type="button" class="btn btn-info" value="Nuevo" ng-click="nuevoManualesModal()" />
+
+<div class="panel panel-primary">
+    <div class="form-horizontal">
+        <div class="widthContentPanelReporte">
+            <div class="table-responsive">
+                <table class="table table-hover table-condensed table-striped">
+                    <tr>
+                        <td class="h3 text-info" colspan="5">Documentaci&oacuten</td>
+                        <td align="right" colspan="3">{{today}}</td>
+                    </tr>
+
+                </table>
+                <table class=" table table-hover table-condensed table-striped">
+
+                    <tr class="info">
+                        <th>No.</th>
+                        <th class="widthTitle_13">Fecha Carga</th>
+
+                        <th>Nombre</th>
+                        <th>Descripci&oacuten</th>
+                        <th>Usuario / Carga</th>
+                        <th>Acciones</th>
+
+                    </tr>
+                    <tr ng-repeat="tre in ManualesResponse">
+                        <!--Se agrega link para dar seguimiento al ticket-->
+                        <td>
+                            <!--<a ui-sref="seguimientoTickets({TicketId:tre.TicketId,isCarga:1})">{{ tre.TicketId }}</a>-->
+                            {{ tre.Id}}
+
+
+                        </td>
+                        <td class="fechaRegistro">{{tre.Fecha | date:'dd/MM/yyyy HH:mm:ss a'}}</td>
+
+                        <td>{{ tre.Nombre  }}</td>
+                        <td>{{ tre.Descripcion  }}</td>
+                        <td>{{ tre.Usuario  }}</td>
+
+
+                        <td>
+
+                            <table>
+                                <tr>
+                                    <td style="border-right:10px" data-toggle="tooltip" title="Descargar Archivo"><span ng-click="descargarArchivo(tre.Url)" class="glyphicon glyphicon-download-alt"></span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                                    <td ng-if="UsuarioAdmin" data-toggle="tooltip" title="Eliminar Archivo"><span ng-click="eliminarArchivo(tre.Id)" class="glyphicon glyphicon-trash"></span>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td ng-if="UsuarioAdmin" data-toggle="tooltip" title="Editar"><span ng-click="editarArchivo(tre)" class="glyphicon glyphicon-edit"></span></td>
+                                </tr>
+                            </table>
+
+                        </td>
+
+
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <hr />
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+
+
+
+
+
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="nuevoManualesModal" role="dialog" title="Nuevo Manual">
+    <div class="modal-dialog">
+        <form id="nuevoManualesForm" name="gestionTicketsForm" novalidate>
+            <div class="modal-content">
+                <div class="modal-header modal-header-info">
+                    <button type="button" class="close" data-dismiss="modal" ng-click="cerrarNuevoManualesModal()">&times;</button>
+                    <h4 class="modal-title">Nuevo Documento</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table" style="table-layout: fixed">
+
+                        <tr>
+                            <td width="16%" ng-class="{'form-group has-feedback': isSelectClientesRequired,
+        'form-group  has-warning has-feedback': !isSelectClientesRequired}">
+                                <label class="control-label">
+                                    Cliente
+                                </label>
+                                <label class="labelRed"> *</label>
+                            </td>
+                            <td>
+
+                                <select class="comboBox" name="cliente" id="cliente" ng-model="SelClientes"
+                                        ng-options="cliente as cliente.Nombre for cliente in clientes track by cliente.PersonaID">
+                                    <option value="" selected>Seleccionar</option>
+
+                                </select>
+
+
+
+
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <label class="control-label">
+                                    Producto
+                                </label>
+                                <label class="labelRed"> </label>
+                            </td>
+                            <td ng-class="{'form-group has-feedback': isSelectCaratulasRequired,
+                                                                   'form-group has-warning has-feedback': !isSelectCaratulasRequired}">
+                                <select class="comboBox" name="producto" id="producto" ng-model="SelProductos"
+                                        ng-options="producto as producto.NombreProducto for producto in productos track by producto.ProductoId">
+                                    <option value="">Seleccionar (Opcional)</option>
+                                </select>
+                            </td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td>
+                                <label class="control-label">
+                                    Categoria
+                                </label>
+                                <label class="labelRed">*</label>
+                            </td>
+                            <td ng-class="{'form-group has-feedback': isSelectCaratulasRequired,
+                                                                   'form-group has-warning has-feedback': !isSelectCaratulasRequired}">
+
+
+
+                                <select name="categoria" id="categoria" ng-model="selectCategoria" class="form-control" ng-required="true"
+                                        ng-options="Categorias as Categorias.NombreCategoria.toUpperCase() for Categorias in Categorias">
+                                    <option value="" disabled="disabled">Seleccionar</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label class="control-label">
+                                    Nombre Documento/Archivo
+                                </label>
+
+                                <div ng-class="{'form-group has-feedback': isSelectTiposTicketRequired,
+                                                                        'form-group has-warning has-feedback': !isSelectTiposTicketRequired}">
+                                    <input type="text" ng-model="NombreDocumento" class="form-control" id="NombreDocumento" name="NombreDocumento" />
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="2">
+                                <label class="control-label">
+                                    Descripci&oacute;n
+                                </label>
+                                <label class="labelRed"> *</label>
+                                <div ng-class="{'form-group has-feedback': isValidaDescripcion && isDescripcionTextAreaRequired,
+                                                                                'form-group has-error has-feedback': !isValidaDescripcion,
+                                                                                'form-group has-warning has-feedback': !isDescripcionTextAreaRequired}">
+                                    <textarea name="descripcionTextArea" id="descripcionTextArea" class="form-control panel-heading BordeGris" rows="3" cols="40"
+                                              maxlength="500" ng-model="descripcionTextArea" uib-popover="{{resultadoDescripcion}}"
+                                              popover-trigger="'mouseenter'" ng-blur="validarDescripcion()" ng-required="true"></textarea>
+                                    <span class="label label-warning">{{resultadoDescripcion}}</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <!--<tr >
+                            <td colspan="2">
+                                Subir archivo
+                            </td>
+                        </tr>-->
+                        <tr>
+                            <td colspan="2">
+                                <div class="row sinpadding">
+                                    <div class="col-md-9">
+                                        <div style="position: relative;" ng-class="{'form-group has-feedback': isArchivoRequired,
+                'form-group has-warning has-feedback': !isArchivoRequired}">
+                                            <label class="control-label">
+                                                Subir archivo
+                                            </label>
+
+                                            <!--<input type="file" id="file" name="file" ng-files="cargarArchivos($files)" multiple/>-->
+                                            <input type="file" id="file" name="file" ng-model-options="ArchivoModel" nv-file-select="" uploader="uploader" style="position: absolute; left: 0px; z-index: 1; width: 97%;" />
+                                            <span id="txtFile" class="label label-warning">Seleccione un Archivo</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+
+
+
+
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" ng-click="guardarInformacion()">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cerrarNuevoManualesModal()">Cancelar</button>
+
+                 </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="modal" id="errorModal" title="Error" style="overflow-y: scroll;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modalHead-warning">
+                <button type="button" class="close" ng-click="cerrarErrorModal()" aria-hidden="true">x</button>
+                <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <alert type="warning" show="true" dismissable="false" class="text-left">
+                        {{mensajeError}}
+                        <!--<div ng-show="true" class="alert alert-warning alert-dismissable">
+                            <div>
+                                <div id="msgModalErrors" class="ng-scope">{{mensajeError}}</div>
+                            </div>
+                        </div>-->
+                    </alert>
+                </div>
+                <div class="form-group text-right">
+                    <button ng-click="cerrarErrorModal()" class="btn btn-warning">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" id="exitoModal" title="Error" style="overflow-y: scroll;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modalHead-info">
+                <button type="button" class="close" ng-click="cerrarExitoModal()" aria-hidden="true">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <alert type="warning" show="true" dismissable="false" class="text-left">
+                        {{mensajeExito}}
+                    </alert>
+                </div>
+                <div class="form-group text-right">
+                    <button ng-click="cerrarExitoModal()" class="btn btn-info">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

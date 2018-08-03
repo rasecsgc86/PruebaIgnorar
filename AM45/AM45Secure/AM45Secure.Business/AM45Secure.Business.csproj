@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5510E925-B8C4-4D94-8C77-E441C6FF991C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AM45Secure.Business</RootNamespace>
+    <AssemblyName>AM45Secure.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Desarrollo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Desarrollo\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\QA\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BusinessLayer, Version=1.0.6172.22105, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\BusinessLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Common, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DataLayer, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\DataLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>libs\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WebForms.v12.12.0.0.0\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MMC.AutoMarsh.Presentation, Version=1.0.6639.35396, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Framework35\MMC.AutoMarsh.Presentation\bin\MMC.AutoMarsh.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="MMC.Library.Business, Version=1.0.6353.26599, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Framework35\MMC.Library.Business\bin\MMC.Library.Business.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AMQADataSet.cs">
+      <DependentUpon>AMQADataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AMQADataSet.Designer.cs">
+      <DependentUpon>AMQADataSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AMQADataSetTicket.cs">
+      <DependentUpon>AMQADataSetTicket.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AMQADataSetTicket.Designer.cs">
+      <DependentUpon>AMQADataSetTicket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Business\Comparador\ComparadorBusiness.cs" />
+    <Compile Include="Business\Configurador\ConfiguradorBusiness.cs" />
+    <Compile Include="Business\Cotizador\CotizadorBusiness.cs" />
+    <Compile Include="Business\Emitir\EmitirBusiness.cs" />
+    <Compile Include="Business\ImagenCliente\ImagenClienteBusiness.cs" />
+    <Compile Include="Business\Imprimir\ImprimirBusiness.cs" />
+    <Compile Include="Business\Manuales\ManualesBusiness.cs" />
+    <Compile Include="Business\Seguridad\SeguridadBusiness.cs" />
+    <Compile Include="Business\Tickets\CalendarioTicketsBusiness.cs" />
+    <Compile Include="Business\Tickets\ConfigurarParametrosTicketsBusiness.cs" />
+    <Compile Include="Business\Tickets\GestionBusiness.cs" />
+    <Compile Include="Business\Tickets\ReporteBusiness.cs" />
+    <Compile Include="Business\Tickets\SeguimientoTicketsBusiness.cs" />
+    <Compile Include="DatosEmail.cs">
+      <DependentUpon>DatosEmail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DatosEmail.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DatosEmail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="IBusiness\IComparador\IComparadorBusiness.cs" />
+    <Compile Include="IBusiness\IConfigurador\IConfiguradorBusiness.cs" />
+    <Compile Include="IBusiness\ICotizador\ICotizadorBusiness.cs" />
+    <Compile Include="IBusiness\IEmitir\IEmitirBusiness.cs" />
+    <Compile Include="IBusiness\IimagenCliente\IimagenClienteBusiness.cs" />
+    <Compile Include="IBusiness\IImprimir\IImprimirBusiness.cs" />
+    <Compile Include="IBusiness\IManuales\IManualesBussines.cs" />
+    <Compile Include="IBusiness\ISeguridad\ISeguridadBusiness.cs" />
+    <Compile Include="IBusiness\Tickets\ICalendarioTicketsBusiness.cs" />
+    <Compile Include="IBusiness\Tickets\IConfigurarParametrosTicketsBusiness.cs" />
+    <Compile Include="IBusiness\Tickets\IGestionBussiness.cs" />
+    <Compile Include="IBusiness\Tickets\IReporteBusiness.cs" />
+    <Compile Include="IBusiness\Tickets\ISeguimientoTicketsBusiness.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recursos\RecursosBusiness.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AM45Secure.Commons\AM45Secure.Commons.csproj">
+      <Project>{34086ac4-ae26-4ac7-8110-7e9deee59353}</Project>
+      <Name>AM45Secure.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AM45Secure.DataAccess\AM45Secure.DataAccess.csproj">
+      <Project>{6647e386-5220-4df3-8abb-3fefc4a9f6a6}</Project>
+      <Name>AM45Secure.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="imgReport\ID222.png" />
+    <Content Include="imgReport\ID440720.png" />
+    <Content Include="imgReport\ID440721.png" />
+    <Content Include="imgReport\LogoSegurisimo.png" />
+    <Content Include="imgReport\Logo_Daimler.png" />
+    <Content Include="libs\BusinessLayer.dll" />
+    <Content Include="libs\Common.dll" />
+    <Content Include="libs\DataLayer.dll" />
+    <Content Include="libs\Microsoft.ReportViewer.Common.dll" />
+    <Content Include="libs\Microsoft.ReportViewer.DataVisualization.dll" />
+    <Content Include="libs\Microsoft.ReportViewer.ProcessingObjectModel.dll" />
+    <Content Include="libs\MMC.AutoMarsh.Presentation.dll" />
+    <Content Include="libs\MMC.Library.Business.dll" />
+    <Content Include="libs\MMC.Library.Data.dll" />
+    <Content Include="libs\MMC.Library.General.dll" />
+    <Content Include="libs\Oracle.DataAccess.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Recursos\RecursosBusiness.resx" />
+    <EmbeddedResource Include="Reportes\ReporteCorreo.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteCotizacion.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AMQADataSet.xsc">
+      <DependentUpon>AMQADataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AMQADataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AMQADataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AMQADataSet.xss">
+      <DependentUpon>AMQADataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AMQADataSetTicket.xsc">
+      <DependentUpon>AMQADataSetTicket.xsd</DependentUpon>
+    </None>
+    <None Include="AMQADataSetTicket.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AMQADataSetTicket1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AMQADataSetTicket.xss">
+      <DependentUpon>AMQADataSetTicket.xsd</DependentUpon>
+    </None>
+    <None Include="app.config" />
+    <None Include="DatosEmail.xsc">
+      <DependentUpon>DatosEmail.xsd</DependentUpon>
+    </None>
+    <None Include="DatosEmail.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DatosEmail.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DatosEmail.xss">
+      <DependentUpon>DatosEmail.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reportes\ReporteTicket.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Business\Controlador\" />
+    <Folder Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

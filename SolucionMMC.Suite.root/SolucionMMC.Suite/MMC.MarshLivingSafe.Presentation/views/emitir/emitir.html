@@ -1,0 +1,1180 @@
+<div class="row">
+    <article class="col-sm-12">
+        <!-- Datos del Contratante -->
+        <fieldset class="emitir borderBContent marginDown">
+            <legend class="tituloLegend text-center">
+                <span>Datos del Contratante</span>
+            </legend>
+            <div class="form-horizontal">
+                <div class="col-md-3 col-md-offset-3">
+                    <div class="form-group">
+                        <label class="titleList control-label">Tipo de Persona</label>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group radioList">
+                        <label class="control-label" for="optPersonaFisica">Persona Física</label>
+                        <input name="TipoPersona" id="optPersonaFisica" type="radio" ng-model="InformacionEmitir.Contratante.TipoPersona" ng-click="showPersonaFisica()"
+                               value="Fisica" checked="checked" ng-disabled="ExistePrecarga">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group radioList">
+                        <label class="control-label" for="optPersonaMoral">Persona Moral</label>
+                        <input name="TipoPersona" id="optPersonaMoral" type="radio" ng-model="InformacionEmitir.Contratante.TipoPersona" value="Moral"
+                               ng-click="showPersonaMoral()" ng-disabled="ExistePrecarga">
+                    </div>
+                </div>
+                <div ng-if="optPersonaFisica" class="col-md-12">
+                    <div class="col-md-4 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtNombre"><span class="labelRed">*</span>Nombre</label>
+                            <div class="col-md-8">
+                                <input type="text" ng-disabled="ExistePrecarga" ng-model="InformacionEmitir.Contratante.Nombre" maxlength="90" class="inputText" name="txtNombre" id="txtNombre"
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" or="txtPaterno"><span class="labelRed">*</span>Paterno</label>
+                            <div class="col-md-8">
+                                <input type="text" ng-model="InformacionEmitir.Contratante.Paterno" maxlength="25" class="inputText" name="txtPaterno" id="txtPaterno"
+                                       required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtMaterno">Materno</label>
+                            <div class="col-md-8">
+                                <input type="text" ng-model="InformacionEmitir.Contratante.Materno" maxlength="25" class="inputText" name="txtMaterno" id="txtMaterno">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="optPersonaMoral" class="col-md-12 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="txtNombre"><span class="labelRed">*</span>Razón Social</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-disabled="ExistePrecarga" ng-model="InformacionEmitir.Contratante.Nombre" class="inputText" name="txtRazon" id="txtRazon" required>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-if="optPersonaFisica" class="col-md-4 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-4 " for="txtFechaNacimiento"><span class="labelRed">*</span>Fecha de Nac.</label>
+                        <div class="col-md-8">
+                            <table class="inputText">
+                                <tr>
+                                    <td>
+                                        <input class="inputText" type="text" popup-placement="bottom" uib-datepicker-popup="{{format}}" ng-change="fechaNacimientoSel(dt)"
+                                               ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptionsEndDate" ng-required="true"
+                                               current-text="Hoy" clear-text="Limpiar" close-text="Cerrar" alt-input-formats="altInputFormats" required />
+                                    </td>
+                                    <td width="28px">
+                                        <span>
+                                            <button type="button" class="btn btn-default btn-calendar" ng-click="open1()">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="optPersonaMoral" class="col-md-4 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-4 " for="txtFechaNacimiento"><span class="labelRed">*</span>Fecha de Constitución</label>
+                        <div class="col-md-8">
+                            <table class="inputText">
+                                <tr>
+                                    <td>
+                                        <input class="inputText ampliaCalendario" popup-placement="bottom" type="text" uib-datepicker-popup="{{format}}" ng-change="fechaNacimientoSel(dt)"
+                                               ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptionsEndDate" ng-disabled="ExistePrecarga" ng-required="true"
+                                               current-text="Hoy" clear-text="Limpiar" close-text="Cerrar" alt-input-formats="altInputFormats" required />
+                                    </td>
+                                    <td width="28px">
+                                        <span>
+                                            <button type="button" class="btn btn-default btn-calendar" ng-click="open1()">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtRFC"><span class="labelRed">*</span>R.F.C.</label>
+                        <div class="col-md-9">
+                            <input type="text" style="text-transform: uppercase;" ng-disabled="RFCinhabilitado || ExistePrecarga" ng-blur="validarRFC()" uib-popover="{{resultadoValidaRFC}}"
+                                   ng-model="InformacionEmitir.Contratante.RFC" maxlength="14" class="inputText" name="txtRFC "
+                                   id="txtRFC" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-5" for="selNacionalidad"><span class="labelRed">*</span>Nacionalidad</label>
+                        <div class="col-md-7">
+                            <select class="comboBox" name="txtNacionalidad" ng-model="InformacionEmitir.Contratante.Nacionalidad" id="selNacionalidad"
+                                    ng-change="showPersonaNacional()" required ng-if="!ExistePrecarga">
+                                <option ng-repeat="nacionalidad in NacionalidadList" value="{{nacionalidad.ElementoId}}">{{nacionalidad.Nombre}}</option>
+                            </select>
+                            <select class="comboBox" name="txtNacionalidad" ng-model="Nacionalidad" ng-if="ExistePrecarga" ng-disabled="ExistePrecarga">
+                                <option selected="selected" value="{{Nacionalidad}}">{{Nacionalidad}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtGenero"><span class="labelRed">*</span>Género</label>
+                        <div class="col-md-6">
+                            <select class="comboBox" ng-disabled="Generoinhabilitado" name="txtGenero" ng-change="generoSel()" ng-model="modeloGenero"
+                                    id="selGenero">
+                                <option value="{{GeneroList[0].Nombre}}">{{GeneroList[0].Nombre}}</option>
+                                <option value="{{GeneroList[1].Nombre}}">{{GeneroList[1].Nombre}}</option>
+                                <option ng-if="optPersonaMoral" value="{{GeneroList[2].Nombre}}">{{GeneroList[2].Nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtCorreo"><span class="labelRed">*</span>Correo Electrónico</label>
+                        <div class="col-md-9">
+                            <input type="text" class="inputText" ng-blur="validarCorreo()" maxlength="100" uib-popover="{{resultadoValidaEmail}}" ng-model="InformacionEmitir.Contratante.CorreoElectronico"
+                                   name="txtCorreo" id="txtCorreo" placeholder="nombre@dominio.com" required>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-5" for="txtTelefono"><span class="labelRed">*</span>(Lada) Teléfono</label>
+                        <div class="col-md-6">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Contratante.Telefono" numbers-only max="10" novalidate name="txtTelefono"
+                                   maxlength="10" id="txtTelefono" placeholder="Teléfono Cliente" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-5" for="txtTelefonodos">(Lada) Teléfono 2</label>
+                        <div class="col-md-6">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Contratante.Telefono2" numbers-only max="10" novalidate
+                                   name="txtTelefonodos" maxlength="10" id="txtTelefonodos">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+        <!-- Información Complementaría Fisica -->
+        <fieldset ng-if="optInfoComplementaria && optPersonaFisica" class="emitir borderBContent marginDown">
+            <legend class="tituloLegend text-center">
+                <span>Información Complementaría</span>
+            </legend>
+            <div class="form-horizontal">
+                <div class="align-label">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="selPaisNacimiento"><span class="labelRed">*</span>Pais de Nacimiento</label>
+                        <div class="col-md-6">
+                            <select class="comboBox" ng-disabled="ExistePrecarga" ng-change="showEntidad()" ng-model="InformacionEmitir.Complementaria.PaisNacimiento" name="PaisNacimiento"
+                                    id="selPaisNacimiento">
+                                <option ng-repeat="elemento in PaisNacimientoList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--  se quido del combobox ng-disabled="optEntidad" -->
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selEntidadNacimiento"><span class="labelRed">*</span>Entidad Federativa de Nacimiento</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.Complementaria.EntidadNacimiento" name="EntidadNacimiento"
+                                        id="selEntidadNacimiento">
+                                    <option ng-repeat="elemento in EntidadNacimientoList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selDoctoIdentificacion"><span class="labelRed">*</span>Docto. de Idetificación</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.Complementaria.DoctoIdentificacion" name="DoctoIdentifiacion" id="selDoctoIdentificacion"
+                                        ng-change="showDoctoFederal()">
+                                    <option ng-repeat="elemento in DoctoIdentifiacionList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="optSDoctoFederal" class="col-md-6 control">
+                        <div class="col-md-12 control">
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="txtNDocto"><span class="labelRed">*</span>No. de Docto</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="InformacionEmitir.Complementaria.NumDocto" class="inputText" name="txtNDocto" id="txtNDocto"
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="optCDoctoFederal" class="col-md-6 control">
+                        <div class="col-md-6 control">
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="txtNDocto"><span class="labelRed">*</span>No. de Docto</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="inputText" ng-model="InformacionEmitir.Complementaria.NumDocto" name="txtNDocto" id="txtNDocto"
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 control">
+                            <div class="form-group">
+                                <label class="control-label col-md-4" for="txtOficina"><span class="labelRed">*</span>Oficina</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="inputText" ng-model="InformacionEmitir.Complementaria.OficinaExpide" name="txtOficina" id="txtOficina"
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtCurp">CURP</label>
+                            <div class="col-md-8">
+                                <input type="text" ng-blur="validarCURP()" uib-popover="{{resultadoValidaCURP}}" maxlength="18" ng-model="InformacionEmitir.Complementaria.CURP"
+                                       class="inputText" name="txtCurp" id="txtCurp">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtSerieFiel">No. de Serie FIEL</label>
+                            <div class="col-md-8">
+                                <input type="text" ng-model="InformacionEmitir.Complementaria.SerieFiel" maxlength="15" class="inputText" name="txtSerieFiel"
+                                       id="txtSerieFiel">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selProfesion"><span class="labelRed">*</span>Profesión</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.Complementaria.Profesion" name="Profesion" id="selProfesion">
+                                    <option ng-repeat="elemento in ProfesionList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selOcupacion"><span class="labelRed">*</span>Ocupación</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" required name="Ocupacion" ng-model="InformacionEmitir.Complementaria.Ocupacion" id="selOcupacion">
+                                    <option ng-repeat="elemento in OcupacionList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selGiroNegocio"><span class="labelRed">*</span>Actividad o giro de negocio</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.Complementaria.GiroNegocio" name="GiroNegocio" id="selGiroNegocio">
+                                    <option ng-repeat="elemento in GiroNegocioList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selMandoGobierno"><span class="labelRed">*</span>¿Ha ejercido mando en el gobierno?</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.Complementaria.MandoGobierno" name="MandoEnGobierno" ng-change="showCargoGobierno()"
+                                        id="selMandoGobierno">
+                                    <option ng-repeat="elemento in MandoEnGobiernoList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FJQP se quita ng-disabled="optCargoGobierno" del textarea Informacion Complementaria Informacion Complementaria -->
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtDescripcionDelCargo"><span class="labelRed">*</span>Descripción del Cargo</label>
+                            <div class="col-md-8">
+                                <textarea ng-model="InformacionEmitir.Complementaria.DescripcionCargo" class="inputText" name="txtDescripcionDelCargo"
+                                          id="txtDescripcionDelCargo"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selRegimenFiscalEmpresarial">Régimen Fiscal Empresarial</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.Complementaria.RegimenFiscal" name="RegimenFiscalEmpresarial" id="selRegimenFiscalEmpresarial">
+                                    <option ng-repeat="elemento in RegimenFiscalEmpresarialList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <!-- Información Complementaría Moral -->
+        <fieldset ng-if="optInfoComplementaria && optPersonaMoral" class="emitir borderBContent marginDown">
+            <legend class="tituloLegend text-center">
+                <span>Información Complementaría</span>
+            </legend>
+            <div class="form-horizontal">
+                <div class="align-label">
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtActividadPrincipal"><span class="labelRed">*</span>Actividad Principal</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="InformacionEmitir.ComplementariaMoral.ActividadPrincipal" maxlength="30" class="inputText" name="txtActividadPrincipal"
+                                       id="txtActividadPrincipal" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtSerieFielMoral">No. Serie FIEL</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="InformacionEmitir.ComplementariaMoral.SerieFIELMoral" class="inputText" max="15" name="txtSerieFielMoral"
+                                       id="txtSerieFielMoral" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selDoctoIdentificacionMoral"><span class="labelRed">*</span>Docto. de Idetificación</label>
+                            <div class="col-md-7">
+                                <select class="comboBox" ng-model="InformacionEmitir.ComplementariaMoral.DoctoIdentificacionMoral" name="DoctoIdentificacionMoral"
+                                        id="selDoctoIdentificacionMoral">
+                                    <option ng-repeat="elemento in DoctoIdentifiacionList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtNDoctoMoral"><span class="labelRed">*</span>No. de Docto</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="InformacionEmitir.ComplementariaMoral.NumDoctoMoral" maxlength="30" class="inputText" name="txtNDoctoMoral"
+                                       id="txtNDoctoMoral">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtApoderadoLegal">Nombre completo del Apoderado Legal</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="InformacionEmitir.ComplementariaMoral.ApoderadoLegal" class="inputText" name="txtApoderadoLegal"
+                                       id="txtApoderadoLegal" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-6" for="txtFolioMercatil">Folio Mercatil</label>
+                            <div class="col-md-4">
+                                <input type="text" ng-model="InformacionEmitir.ComplementariaMoral.FolioMercatil" class="inputText" name="txtFolioMercatil"
+                                       id="txtFolioMercatil" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtEstructuraCoorporativa">Estructura Coorporativa</label>
+                            <div class="col-md-7">
+                                <textarea ng-model="InformacionEmitir.ComplementariaMoral.EstructuraCoorporativa" class="inputText" name="txtEstructuraCoorporativa"
+                                          id="txtEstructuraCoorporativa"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtInformacionAccionistas">Informacion Accionistas</label>
+                            <div class="col-md-7">
+                                <textarea ng-model="InformacionEmitir.ComplementariaMoral.InformacionAccionistas" class="inputText" name="txtInformacionAccionistas"
+                                          id="txtEstructuraCoorporativa"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selGiroNegocio"><span class="labelRed">*</span>Actividad o giro de negocio</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.ComplementariaMoral.GiroNegocioMoral" name="GiroNegocio" id="selGiroNegocio">
+                                    <option ng-repeat="elemento in GiroNegocioList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtObjetivoSocial"><span class="labelRed">*</span>Objetivo Social</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-model="InformacionEmitir.ComplementariaMoral.ObjetivoSocial" class="inputText" name="txtObjetivoSocial"
+                                       id="txtObjetivoSocial" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selMandoGobierno"><span class="labelRed">*</span>¿Ha ejercido mando en el gobierno?</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.ComplementariaMoral.MandoGobiernoMoral" name="MandoEnGobierno" ng-change="showCargoGobierno()"
+                                        id="selMandoGobierno">
+                                    <option ng-repeat="elemento in MandoEnGobiernoList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtNombreFuncionario"><span class="labelRed">*</span>Nombre Funcionario</label>
+                            <div class="col-md-7">
+                                <input type="text" ng-disabled="optCargoGobierno" ng-model="InformacionEmitir.ComplementariaMoral.NombreFuncionario" class="inputText"
+                                       name="txtNombreFuncionario" id="txtNombreFuncionario" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="txtIniContrato"><span class="labelRed">*</span>Fecha de Nacimiento del Apoderado Legal</label>
+                            <div class="col-md-7">
+                                <table class="inputText">
+                                    <tr>
+                                        <td>
+                                            <input required class="inputText" type="text" uib-datepicker-popup="{{format}}" ng-model="dt3" is-open="popup3.opened" ng-change="fechaApoderadoSel(dt3)"
+                                                   datepicker-options="dateOptions" ng-required="true" current-text="Hoy" clear-text="Limpiar" close-text="Cerrar" alt-input-formats="altInputFormats" />
+                                        </td>
+                                        <td width="28px">
+                                            <span>
+                                                <button type="button" class="btn btn-default btn-calendar" ng-click="open3()">
+                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                </button>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selPaisNacimiento"><span class="labelRed">*</span>Pais de Nacimiento</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-change="showEntidad()" ng-model="InformacionEmitir.ComplementariaMoral.PaisNacimientoApoderado"
+                                        name="PaisNacimiento" id="selPaisNacimiento">
+                                    <option ng-repeat="elemento in PaisNacimientoList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- FJQP se quito ng-disabled="optEntidad" Informacion Complementaria -->
+                    <div class="col-md-6 control">
+                        <div class="form-group">
+                            <label class="control-label col-md-4" for="selEntidadNacimientoMoral"><span class="labelRed">*</span>Entidad Federativa de Nacimiento Apoderado Legal</label>
+                            <div class="col-md-6">
+                                <select class="comboBox" ng-model="InformacionEmitir.ComplementariaMoral.EntidadApoderado" name="EntidadNacimiento"
+                                        id="selEntidadNacimientoMoral">
+                                    <option ng-repeat="elemento in EntidadNacimientoList" value="{{elemento.ElementoId}}">{{elemento.Nombre}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <!-- Dirección Contratante -->
+        <fieldset class="emitir borderBContent marginDown">
+            <legend class="tituloLegend text-center">
+                <span>Dirección del Contratante</span>
+            </legend>
+            <div class="form-horizontal">
+
+                <div class="col-md-5 radioList control">
+                    <div class="form-group col-md-12">
+                        <label class="control-label" for="txtCodigoPostal">Código Postal</label>
+                        <input type="text" ng-model="CodigoPostal" numbers-only max="5" novalidate class="inputText" name="txtCodigoPostal" id="txtCodigoPostal"
+                               ng-disabled="habilitaBusquedaCP || ExistePrecarga">
+                    </div>
+                </div>
+                <div class="col-md-5 radioList control">
+                    <div class="form-group col-md-12">
+                        <label class="control-label" for="optColonia">Colonia</label>
+                        <input type="text" class="inputText" ng-model="Colonia" name="optColonia" id="optColonia" ng-disabled="habilitaBusquedaCP || ExistePrecarga">
+                    </div>
+                </div>
+                <div class="col-md-2 control">
+                    <div class="form-group col-md-12">
+                        <button ng-click="obtenerRegion()" type="button" class="btn btn-sm btnFntB" ng-disabled="habilitaBusquedaCP || ExistePrecarga">Buscar</button>
+                    </div>
+                </div>
+                <modal class="" visible="modalRequeridos" title="Elementos requeridos" modalheadtype="warning" id="modalRequeridos">
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <label>Es necesario capturar:</label>
+                            <span>{{requeridos}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button ng-click="hideRequeridos()" class="btn btn-danger">Cerrar</button>
+                    </div>
+                </modal>
+                <modal class="" visible="modalSinResultados" title="Buscar" modalheadtype="info" id="modalSinResultados">
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <span>{{resultado}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button ng-click="hideResultados()" class="btn btn-danger">Cerrar</button>
+                    </div>
+                </modal>
+                <modal class="" visible="modalInvalido" title="Estado Incorrecto" modalheadtype="warning" id="modalInvalido">
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <span>Es necesario que el código postal o colonia capturada corresponda al estado que previamente se seleccionó en la sección de cotizar.</span>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button ng-click="hideInvalido()" class="btn btn-danger">Cerrar</button>
+                    </div>
+                </modal>
+                <div class="col-md-4 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtPais"><span class="labelRed">*</span>Pais</label>
+                        <div class="col-md-9">
+                            <input type="text" ng-disabled="true" class="inputText" ng-model="InformacionEmitir.Direccion.Pais" name="txtPais " id="txtPais"
+                                   required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtEstado"><span class="labelRed">*</span>Estado</label>
+                        <div class="col-md-9">
+                            <input type="text" ng-disabled="true" class="inputText" value="buscar.EstadoId" ng-model="InformacionEmitir.Direccion.Estado"
+                                   name="txtEstado" id="txtEstado" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="txtDelegacion"><span class="labelRed">*</span>Delegación</label>
+                        <div class="col-md-8">
+                            <input type="text" ng-disabled="true" class="inputText" value="buscar.DelegacionId" ng-model="InformacionEmitir.Direccion.Delegacion"
+                                   name="txtDelegacion" id="txtDelegacion" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 " for="txtCalle"><span class="labelRed">*</span>Calle</label>
+                        <div class="col-md-9">
+                            <input type="text" ng-disabled="ExistePrecarga" class="inputText" maxlength="50" ng-model="InformacionEmitir.Direccion.Calle"
+                                   name="txtCalle" id="txtCalle" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtNumero"><span class="labelRed">*</span>Número</label>
+                        <div class="col-md-9">
+                            <input type="text" ng-disabled="ExistePrecarga" class="inputText" maxlength="50" name="txtNumero " ng-model="InformacionEmitir.Direccion.Numero"
+                                   id="txtNumero" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtColonia"><span class="labelRed">*</span>Colonia</label>
+                        <div class="col-md-9">
+                            <input type="text" ng-disabled="true" class="inputText" ng-model="InformacionEmitir.Direccion.Colonia" name="txtColonia"
+                                   id="txtColonia" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtCP"><span class="labelRed">*</span>C.P.</label>
+                        <div class="col-md-9 col-sm-12">
+                            <input type="text" ng-disabled="true" class="inputText" ng-model="InformacionEmitir.Direccion.CodigoPostal" numbers-only
+                                   max="5" novalidate name="txtCP" id="txtCP" required>
+                        </div>
+                    </div>
+                </div>
+                <modal visible="modalBuscar" modalheadtype="infoMarsh" widthmodalsize="Info" title="Busqueda por C.P. / Colonia" id="modal_CP_Colonia">
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <td class="widthTitle_15 labelOrange">
+                                            <label>País</label>
+                                        </td>
+                                        <td class="widthTitle_24 labelOrange">
+                                            <label>Estado</label>
+                                        </td>
+                                        <td class="widthTitle_24 labelOrange">
+                                            <label>Delegación</label>
+                                        </td>
+                                        <td class="widthTitle_24 labelOrange">
+                                            <label>Colonia</label>
+                                        </td>
+                                        <td class="widthTitle_13 labelOrange">
+                                            <label>Código Postal</label>
+                                        </td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-model="buscar" dir-paginate="buscar in regiones | itemsPerPage: 10" ng-click="selectRegion(buscar)">
+                                        <td>
+                                            <label value="{{buscar}}">{{buscar.Pais}}</label>
+                                        </td>
+                                        <td>
+                                            <label value="{{buscar}}">{{buscar.Estado}}</label>
+                                        </td>
+                                        <td>
+                                            <label value="{{buscar}}">{{buscar.Delegacion}}</label>
+                                        </td>
+                                        <td>
+                                            <label value="{{buscar}}">{{buscar.Colonia}}</label>
+                                        </td>
+                                        <td>
+                                            <label value="{{buscar}}">{{buscar.CodigoPostal}}</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <dir-pagination-controls></dir-pagination-controls>
+                        </div>
+                    </div>
+                    <div class="form-group text-right">
+                        <button ng-click="obtenerRegion()" class="btn btn-danger">Cerrar</button>
+                    </div>
+                </modal>
+                <modal class="" visible="modalRequeridos" modalheadtype="info" title="Elementos requeridos" id="modalRequeridos">
+                    <div class="form-group margenModal">
+                        <div class="table-responsive">
+                            <label>Es necesario capturar:</label>
+                            <span>{{requeridos}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group margenModal text-right">
+                        <button ng-click="hideRequeridos()" class="btn btn-danger">Cerrar</button>
+                    </div>
+                </modal>
+                <modal class="" visible="modalSinResultados" modalheadtype="warning" title="Buscar" id="modalSinResultados">
+                    <div class="form-group margenModal">
+                        <div class="table-responsive">
+                            <span>{{resultado}}</span>
+                        </div>
+                    </div>
+                    <div class="form-group margenModal text-right">
+                        <button ng-click="hideResultados()" class="btn btn-danger">Cerrar</button>
+                    </div>
+                </modal>
+                <modal class="" visible="modalRequeridosList" title="Elementos requeridos" id="modalRequeridos" modalheadtype="warning">
+                    <div class="form-group margenModal">
+                        <div class="table-responsive">
+                            <span ng-if="showContratanteList"> Información del Contratante, requiere la captura de:</span>
+                            <ul>
+                                <li ng-repeat="i in requeridosContratanteList">{{i}}</li>
+                            </ul>
+                            <span ng-if="showHComplementariaList"> Información Complementaria, requiere la captura de:</span>
+                            <ul>
+                                <li ng-repeat="i in requeridosComplementariaList">{{i}}</li>
+                            </ul>
+                            <span ng-if="showHComplementariaMoralList"> Información Complementaria, requiere la captura de:</span>
+                            <ul>
+                                <li ng-repeat="i in requeridosComplementariaMoralList">{{i}}</li>
+                            </ul>
+                            <span ng-if="showDireccionList"> Dirección del Contratante, requiere la captura de:</span>
+                            <ul>
+                                <li ng-repeat="i in requeridosDireccionList">{{i}}</li>
+                            </ul>
+                            <span ng-if="showVehiculoList"> Datos del Vehículo, requiere la captura de:</span>
+                            <ul>
+                                <li ng-repeat="i in requeridosVehiculoList">{{i}}</li>
+                            </ul>
+                            <span ng-if="showAgenciaList"> Datos para Sucursal/Agencia, requiere la captura de:</span>
+                            <ul>
+                                <li ng-repeat="i in requeridosAgenciaList">{{i}}</li>
+                            </ul>
+                            <span ng-if="showValidosList"> Los siguientes campos se capturaron de manera incorrecta:</span>
+                            <ul>
+                                <li ng-repeat="i in requeridosValidosList">{{i}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="form-group margenModal text-right">
+                        <button ng-click="hideRequeridosList()" class="btn btn-danger">Cerrar</button>
+                    </div>
+                </modal>
+            </div>
+        </fieldset>
+        <!-- INDRA FJQP
+            Seccion de Emisión Múltiple -->
+        <div id="DivEmisionMultiple" ng-show="PermiteEmisionMultiple">
+            <fieldset class="emitir borderBContent marginDown">
+                <legend class="tituloLegend text-center">
+                    <span>Emisión Múltiple</span>
+                </legend>
+                <div class="col-md-6 control">
+                    <div id="ControlSelec">
+                        <label class="control-label">Desea Emisión Múltiple?</label>
+                        <input type="checkbox" ng-model="confirmed" ng-disabled="SelMultiple" ng-change="change()" id="ng-change-confirmed" />
+                    </div>
+                </div>
+                <!--<div class="col-md-6 control">
+                    <div>
+                        <label class="control-label">Solicitud:{{Cotiza}}</label>
+                        <label class="control-label">Solicitud QLTS:{{CotizaQLTS}}</label>
+                    </div>
+                </div>-->
+
+                <div class="row"></div>
+                <div class="col-md-12 control">
+                    <div id="dvCua" ng-show="divVehiculo" ng-init="false">
+                        <ng-form id="test" name="test" novalidate>
+                            <label class="control-label col-md-3"># Vehículos a Capturar:</label>
+                            <div class="col-md-3">
+                                <input class="inputText" id="field" name="field" required ng-model="totalreg" type="number" min="2" max="20" ng-disabled="CapNoVehi" />
+                                <div class="help-block error" ng-show="test.field.$error.required">Este campo es requerido, por favor ingrese el número de Vehículos a capturar</div>
+                                <div class="help-block error" ng-show="test.field.$error.min">El número mínimo de emisiones es de 2</div>
+                                <div class="help-block error" ng-show="test.field.$error.max">El número máximo de emisiones es de 20</div>
+                                <div class="help-block error" ng-show="test.field.$error.number">Número introducido no es valido, favor de corregir</div>
+                            </div>
+                            <div ng-class="{'has-error': test.$invalid}" class="form-group">
+                            </div>
+                        </ng-form>
+                    </div>
+                </div>
+                <div class="row"></div>
+                <div class="col-md-12 control">
+                    <div id="dvCua" ng-show="divVehiculoBtn" ng-init="false">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <button class="btnCotizador" ng-disabled="test.$invalid" ng-click="ValidaCuantos()" type="button" data-toggle="modal" data-target="#exampleModal">
+                                Iniciar captura
+                            </button>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                </div>
+                <div class="row"></div>
+                <div class="col-md-12 control" ng-show="divTerminaProceso">
+                    <div id="ProcesoTerminado" ng-show="divTerminaProceso">
+                        <div class="row">
+                            <div class="col-md-12" style="overflow-y: auto; height:350px;">
+                                <div class="table-responsive">
+                                    <table id="mytable" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td class="widthTitle_2 labelOrange">#</td>
+                                                <td class="widthTitle_15 labelOrange"># Serie</td>
+                                                <td class="widthTitle_15 labelOrange"># Motor</td>
+                                                <td class="widthTitle_15 labelOrange">Placas</td>
+                                                <td ng-show="PermiteContrato" class="widthTitle_15 labelOrange">Contrato</td>
+                                                <td class="widthTitle_15 labelOrange">Conductor</td>
+                                                <td class="widthTitle_15 labelOrange">Estatus</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="VFin in regdataTermina" ng-form="subForm">
+                                                <td>{{VFin.idNoConsec}}</td>
+                                                <td>{{VFin.sNoSerie}}</td>
+                                                <td>{{VFin.sNoMotor}}</td>
+                                                <td>{{VFin.sPlacas}}</td>
+                                                <td ng-show="PermiteContrato">{{VFin.sContrato}}</td>
+                                                <td>{{VFin.sConductor}}</td>
+                                                <td>{{VFin.sDescEstatus}}</td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 control" ng-show="divTerminaProceso2">
+                    <div id="ProcesoTerminado" ng-show="divTerminaProceso2">
+                        <div class="row">
+                            <div class="col-md-12" style="overflow-y: auto; height:350px;">
+                                <div class="table-responsive">
+                                    <table id="mytable" class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <td class="widthTitle_2 labelOrange">#</td>
+                                                <td class="widthTitle_15 labelOrange"># Serie</td>
+                                                <td class="widthTitle_15 labelOrange"># Motor</td>
+                                                <td class="widthTitle_15 labelOrange">Placas</td>
+                                                <td ng-show="PermiteContrato" class="widthTitle_15 labelOrange">Contrato</td>
+                                                <td class="widthTitle_15 labelOrange">Conductor</td>
+                                                <td class="widthTitle_15 labelOrange">Póliza</td>
+                                                <td class="widthTitle_15 labelOrange">Estatus</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="VFin2 in regdataTermina2" ng-form="subForm">
+                                                <td>{{VFin2.idNoConsec}}</td>
+                                                <td>{{VFin2.sNoSerie}}</td>
+                                                <td>{{VFin2.sNoMotor}}</td>
+                                                <td>{{VFin2.sPlacas}}</td>
+                                                <td ng-show="PermiteContrato">{{VFin2.sContrato}}</td>
+                                                <td>{{VFin2.sConductor}}</td>
+                                                <td>{{VFin2.sPolizaQLT}}</td>
+                                                <td>{{VFin2.sDescEstatus}}</td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade bs-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <label class="control-label col-md-10">Favor de completar los datos solicitados</label>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <ng-form id="test2" name="test2" novalidate>
+                                    <div ng-class="{'has-error': test2.$invalid}" class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table id="mytable" class="table table-hover table-condensed table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <td class="widthTitle_2 labelOrange">#</td>
+                                                                <td class="widthTitle_15 labelOrange"># Serie <span class="labelRed">*</span></td>
+                                                                <td class="widthTitle_15 labelOrange"># Motor <span class="labelRed">*</span></td>
+                                                                <td class="widthTitle_15 labelOrange">Placas <span class="labelRed">*</span></td>
+                                                                <td ng-show="PermiteContrato" class="widthTitle_15 labelOrange">Contrato <span class="labelRed">*</span></td>
+                                                                <td class="widthTitle_15 labelOrange">Conductor</td>
+                                                                <td class="widthTitle_15 labelOrange">Acciones</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr ng-repeat="Vehiculo in Vehiculos track by $index" ng-form="subForm">
+                                                                <td class="control-label">{{$index+1}}</td>
+                                                                <td>
+                                                                    <input class="inputText" type="text" name="Serie_{{$index}}" ng-model="Vehiculo.sNoSerie"
+                                                                           ng-disabled="!enabledEdit[{{$index}}]" placeholder="Ingrese el número de Serie" ng-blur="validaCaracteresMultiple($index)" validate-char maxlength="17" required />
+                                                                    <!--<div class="help-block error" ng-show="subForm.Serie_{{$index}}.$error.required">Dato Requerido</div>-->
+                                                                </td>
+                                                                <td>
+                                                                    <input class="inputText" name="Motor_{{$index}}" ng-model="Vehiculo.sNoMotor"
+                                                                           ng-disabled="!enabledEdit[{{$index}}]" placeholder="Ingrese el número de Motor" required />
+                                                                    <!--<div class="help-block error" ng-show="subForm.Motor_{{$index}}.$error.required">Dato Requerido</div>-->
+                                                                </td>
+                                                                <td>
+                                                                    <input class="inputText" name="Placas_{{$index}}" ng-model="Vehiculo.sPlacas"
+                                                                           ng-disabled="!enabledEdit[{{$index}}]" ng-required='true' placeholder="Ingrese las placas" required />
+                                                                    <!--<div class="help-block error" ng-show="subForm.Placas_{{$index}}.$error.required">Dato Requerido</div>-->
+                                                                </td>
+                                                                <td ng-show="PermiteContrato">
+                                                                    <input class="inputText" name="Contrato_{{$index}}" ng-model="Vehiculo.sContrato"
+                                                                           ng-disabled="!enabledEdit[{{$index}}]" ng-required='true' placeholder="Ingrese contrato" required />
+                                                                    <!--<div class="help-block error" ng-show="subForm.Contrato_{{$index}}.$error.required">Dato Requerido</div>-->
+                                                                </td>
+                                                                <td>
+                                                                    <input class="inputText" name="Conductor_{{$index}}" ng-model="Vehiculo.sConductor"
+                                                                           ng-disabled="!enabledEdit[{{$index}}]" ng-required='true' placeholder="Ingrese Conductor" maxlength="60" />
+                                                                </td>
+                                                                <td>
+                                                                    <div class="buttons">
+                                                                        <button class="btn btn-danger" ng-click="deleteRegistro($index)">Limpia</button>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+
+                                                        </tbody>
+
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <!--<button name="bAgrega" ng-disabled="dsblBtn" class="btn btn-primary" ng-click="agregaDatosVehiculo()">Agrega Vehículo {{ContaReg}} de {{totalreg}}</button>-->
+                                            <!--<button name="bAgrega" ng-disabled="dsblBtn" class="btn btn-primary" ng-click="agregaDatosVehiculo()">Agrega Vehículo</button>-->
+                                        </div>
+                                        <div class="row">
+                                            <br />
+                                        </div>
+                                    </div>
+                                </ng-form>
+                            </div>
+                            <div class="modal-footer">
+                                <button id="btnCancel" type="button" class="btn btn-secondary" data-dismiss="modal" ng-disabled="dsblBtnCancel">Cancelar</button>
+                                <button type="button" value="{{btntext}}" class="btn btn-primary" ng-disabled="ValidaCapMultiple" ng-click="ValidaCapturaGen()">{{btntext}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal Start here-->
+                <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">
+                                    <span class="glyphicon glyphicon-time">
+                                    </span>Procesando, Espere...
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info
+                                            progress-bar-striped active"
+                                         style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal ends Here -->
+            </fieldset>
+            <!-- Seccion de Emisión Múltiple -->
+        </div>
+        <!-- Datos del Contratante -->
+        <!-- Datos de Vehiculo -->
+        <fieldset class="emitir borderBContent marginDown">
+            <legend class="tituloLegend text-center">
+                <span>Datos del Vehículo</span>
+            </legend>
+            <div class="form-horizontal">
+                <!-- INDRA FJQP Seccion de Emisión Múltiple -->
+                <div class="col-md-4 control" ng-show="EsNormal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtMotor"><span class="labelRed">*</span>Motor</label>
+                        <div class="col-md-9">
+                            <input type="text" ng-change="motorSel()" class="inputText" ng-model="InformacionEmitir.Vehiculo.Motor" placeholder="S/M" maxlength="50" name="txtMotor"
+                                   id="txtMotor" required>
+                        </div>
+                    </div>
+                </div>
+                <!-- INDRA FJQP Seccion de Emisión Múltiple -->
+                <div class="col-md-4 control" ng-show="EsNormal">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtSerie"><span class="labelRed">*</span>Serie</label>
+                        <div class="col-md-9">
+                            <input type="text" class="inputText" ng-blur="validaCaracteres()" ng-model="InformacionEmitir.Vehiculo.Serie"
+                                   name="txtSerie" validate-char maxlength="17" id="txtSerie" required>
+                        </div>
+                    </div>
+                </div>
+                <!-- INDRA FJQP Seccion de Emisión Múltiple -->
+                <div class="col-md-4 control" ng-show="EsNormal">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="txtPlacas">Placas</label>
+                        <div class="col-md-8">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Vehiculo.Placas" name="txtPlacas" id="txtPlacas">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtBeneficiarioPreferente">Beneficiario Preferente</label>
+                        <div class="col-md-9">
+                            <input type="text" class="inputText" ng-model="BeneficiarioPreferente" maxlength="100" name="txtBeneficiarioPreferente"
+                                   id="txtBeneficiarioPreferente" ng-disabled="bndBeneficiario">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtRFCBeneficiario">RFC Beneficiario</label>
+                        <div class="col-md-9">
+                            <input type="text" class="inputText" ng-blur="validarRFCBeneficiario()" uib-popover="{{resultadoValidaRFCBeneficiario}}"
+                                   ng-model="InformacionEmitir.Vehiculo.RFCBeneficiario" name="txtRFCBeneficiario" id="txtRFCBeneficiario">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-3" for="txtAseguradoAdicional">Asegurado Adicional</label>
+                        <div class="col-md-9">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Vehiculo.AseguradoAdicional" maxlength="50" name="txtAseguradoAdicional"
+                                   id="txtAseguradoAdicional">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 control" ng-show="EsNormal">
+                    <div ng-if="optConductorObligatorio" class="form-group">
+                        <label class="control-label col-md-3 " for="txtConductor"><span class="labelRed">*</span>Conductor</label>
+                        <div class="col-md-9">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Vehiculo.Conductor" maxlengt="50" hname="txtConductor" id="txtConductor" placeholder="Y/O"
+                                   required>
+                        </div>
+                    </div>
+                    <div ng-if="optConductorNoObligatorio" class="form-group">
+                        <label class="control-label col-md-3 " for="txtConductor">Conductor</label>
+                        <div class="col-md-9">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Vehiculo.Conductor" name="txtConductor" id="txtConductor" placeholder="Y/O">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+        <!-- Datos para Sucursal/Agencia -->
+        <fieldset class="emitir borderBContent marginDown" ng-show="PermiteContrato">
+            <legend class="tituloLegend text-center">
+                <span>Datos para Sucursal/Agencia</span>
+            </legend>
+            <div class="form-horizontal">
+
+                <div class="col-md-4 control">
+                    <!-- <div class="form-group">
+                        <label class="control-label col-md-3" for="txtColor">Color</label>
+                        <div class="col-md-8">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Agencia.Color" maxlength="30" name="txtColor" id="txtColor">
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-md-8 control">
+                    <!-- <div class="form-group">
+                        <label class="control-label col-md-4" for="txtClaveVendedor">Clave de Vendedor</label>
+                        <div class="col-md-8">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Agencia.ClaveVendedor" maxlength="25" name="txtClaveVendedor"
+                                   id="txtClaveVendedor">
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="col-md-6 control">
+                    <!-- <div ng-if="optVendedorNoObligatorio" class="form-group">
+                        <label class="control-label col-md-4" for="txtVendedor">Vendedor</label>
+                        <div class="col-md-8">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Agencia.Vendedor" maxlength="80" name="txtVendedor" id="txtVendedor">
+                        </div>
+                    </div>
+                    <div ng-if="optVendedorObligatorio" class="form-group">
+                        <label class="control-label col-md-4" for="txtVendedor"><span class="labelRed">*</span>Vendedor</label>
+                        <div class="col-md-8">
+                            <input type="text" class="inputText" ng-model="InformacionEmitir.Agencia.Vendedor" name="txtVendedor" id="txtVendedor" required>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-md-6 control ">
+                    <!-- <div class="form-group col-md-12">
+                        <div class="col-md-1">
+                            <input name="Código Postal" ng-model="InformacionEmitir.Agencia.ClienteVip" id="optClienteVIP" type="checkbox">
+                        </div>
+                        <label class="control-label col-md-9" for="optClienteVIP">Cliente VIP</label>
+                    </div> -->
+                </div>
+                <div class="clearfix"></div>
+
+                <!-- INDRA FJQP Seccion de Emisión Múltiple -->
+                <div class="col-md-6 control" ng-show="EsNormal">
+                    <div class="form-group" ng-show="PermiteContrato">
+                        <label class="control-label col-md-4" for="txtNContrato"><span class="labelRed">*</span>No. de Contrato</label>
+                        <div class="col-md-8">
+                            <input PermiteContrato type="text" class="inputText" ng-model="InformacionEmitir.Agencia.NumContrato" maxlength="15" minlength="5" name="txtNContrato"
+                                   id="txtNContrato" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 control">
+                    <div class="form-group">
+                        <label class="control-label col-md-5" for="txtIniContrato"><span class="labelRed">*</span>Inicio de Contrato</label>
+                        <div class="col-md-6">
+                            <table class="inputText">
+                                <tr>
+                                    <td>
+                                        <input required class="inputText" type="text" popup-placement="top" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" ng-change="inicioContratoSel(dt2)"
+                                               datepicker-options="dateOptions" ng-required="true" current-text="Hoy" clear-text="Limpiar" close-text="Cerrar" alt-input-formats="altInputFormats" />
+                                    </td>
+                                    <td width="28px">
+                                        <span>
+                                            <button type="button" class="btn btn-default btn-calendar" ng-click="open2()">
+                                                <i class="glyphicon glyphicon-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </fieldset>
+
+    </article>
+</div>

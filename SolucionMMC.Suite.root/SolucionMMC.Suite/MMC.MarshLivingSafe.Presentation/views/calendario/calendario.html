@@ -1,0 +1,67 @@
+﻿<div class="container">
+    <br />
+    <div class="panel panel-primary">
+        <!--<div class="panel-heading"></div>-->
+        <div class="panel-body">
+            <br />
+            <form class="form-horizontal" name="formCalendario">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-2">
+                            <label class="text-right">Dias inh&aacute;biles:</label>
+                        </div>
+                        <div class="col-md-2">
+                            <p class="input-group">
+                                <input type="text" class="form-control"
+                                       uib-datepicker-popup="dd/MM/yyyy"
+                                       ng-model="Dia"
+                                       is-open="popup1.opened"
+                                       datepicker-options="dateOptions"
+                                       current-text="Hoy" 
+                                       clear-text="Limpiar"
+                                       close-text="Cerrar"
+                                       ng-readonly="true"
+                                       required />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"
+                                            ng-click="open1()">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
+                            </p>
+                        </div>
+                        <!-- Botones -->
+                        <div class="col-sm-3">
+                            <input type="button" class="btn btn-info" value="Agregar" ng-click="guardarCalendarioTickest()"
+                                   ng-disabled="formCalendario.$invalid" />
+                        </div>
+                    </div>
+                    <!-- Listado de Tickest -->
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-4">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-condensed table-striped">
+                                    <thead>
+                                        <tr class="info">
+                                            <th>Fecha</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tr ng-repeat="cal in listaCalendario">
+                                        <td>{{cal.FechaDia}}</td>
+                                        <td>
+                                            <a class="btn btn-danger" href="" ng-click="eliminarCalendario(cal.IdDiaHabil)">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
