@@ -1,0 +1,234 @@
+﻿<div class="container">
+    <!--<style>
+            /* CSS used here will be applied after bootstrap.css */
+    .modal-dialog{
+          overflow-y: initial !important
+    }
+    .modal-body{
+      height: 650px;
+      overflow-y: auto;
+    }
+        </style>-->
+    <br />
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <br />
+            <form class="form-horizontal" name="formConfiguracionParam">
+                <input type="hidden" ng-model="TipoId" />
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <label>Cliente:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" class="form-control" id="clienteAutocomplete"
+                                   ng-model="clienteProductoModel.NombreCliente" required/>
+
+                        </div>
+                        <div class="col-md-3">
+                            <input type="button" class="btn btn-info" value="Buscar" ng-click="buscarconfiguraciones()" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-0 col-md-12">
+                            <!--<input type="button" class="btn btn-info" value="Agregar" ng-click="toggleModal()"/>-->
+                            <button type="button" class="btn btn-info" ng-click="toggleModalOpen()" ng-disabled="formConfiguracionParam.$invalid">Agregar</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-0 col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-condensed table-striped">
+                                    <thead>
+                                        <tr class="info">
+                                            <th><a><i class="glyphicon glyphicon-edit"></i> </a></th>
+                                            <th>Tipo de Ticket</th>
+                                            <th>Responsable</th>
+                                            <th>Hrs Atencion</th>
+                                            <th>Hrs 2do Escalamiento</th>
+                                            <th>Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tr ng-repeat="con in listaConfiguraciones">
+                                        <td><a ng-click="editarCongifuracion(con)">Editar</a></td>
+                                        <td>{{con.Descripcion}}</td>
+                                        <td>{{con.PersonaResponsable}}</td>
+                                        <td style="text-align: center">{{con.HorasAtencion}}</td>
+                                        <td style="text-align: center">{{con.HorasSegundoEscalamiento}}</td>
+                                        <td>
+                                            <a class="btn btn-danger" href="" ng-click="eliminarConfiguracion(con.TipoId)">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ###################################  Modal Nuevo tipo de Ticket    ##########################  -->
+<!--<modal visible="showModal" title="Nuevo tipo de Ticket" id="modal" widthmodalsize="Info" modalheadtype="info">-->
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
+    <div class="modal-dialog" style="overflow-y: initial !important; width: 70%">
+        <div class="modal-content">
+            <div class="modal-header modalHead-info">
+                <button type="button" class="close label label-danger" data-dismiss="modal">X</button>
+                <h4 class="modal-title">Nuevo tipo de Ticket</h4>
+            </div>
+            <div class="modal-body" style="overflow-y: auto; height: 720px;">
+                <form class="form-horizontal" id="myform">
+                    <div class="row">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body">
+                                <div class="form-group text-right">
+                                    <div class="col-md-2">
+
+                                        <dt>
+                                            <p class="text-info">Cliente:</p>
+                                        </dt>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <dt>
+                                            <p class="text-info">{{targetModel.NombreCliente}}</p>
+                                        </dt>
+                                    </div>
+                                </div>
+                                <div class="form-group text-left">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Nombre del ticket:</label>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input ng-model="Descripcion" class="form-control" id="descrip" 
+                                        ng-disabled="isEditar" maxlength="50" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group text-left">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Horas Atenci&oacute;n:</label>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <input ng-model="TiempoAtencion" class="form-control" id="tiempoAten" numbers-only max="3" novalidate/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <label class="control-label">Responsable Atenci&oacute;n:</label>
+                                    </div>
+                                   
+                                </div>
+                                <div class="form-group text-left">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Nombre:</label>
+                                    </div>
+                                    <div class="col-md-7">
+
+                                        <input type="text" class="form-control" id="autocompleteResponsable"
+                                               ng-model="PersonaResponsableModel.Nombre" ng-readonly="enabletext" />
+                                    </div>
+                                </div>
+                                <div class="form-group text-left">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Correo:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input ng-model="targetModelCero.MailResponsable" class="form-control" ng-readonly="true" id="responsableUno" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-primary">
+                            <div class="panel panel-heading">1er Escalamiento</div>
+                            <div class="panel-body">
+                           
+                                <div class="form-group text-left">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Nombre:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="autocompleteEscalamientoUno"
+                                               ng-model="PersonaEscalamiento1.Nombre" ng-readonly="enabletext2" />
+                                    </div>
+                                </div>
+                                <div class="form-group text-left">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Correo:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input class="form-control" ng-readonly="true" ng-model="targetModelUno.MailEscalamiento1" id="mailEscalamientoUno" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel panel-heading">2do Escalamiento</div>
+                            <div class="panel-body">
+                                    <div class="form-group text-left">
+                                        <div class="col-md-2">
+                                            <label class="control-label">Horas:</label>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input ng-model="HorasSegundoEscalamiento" class="form-control" id="horassegundoescalamiento" numbers-only max="3" />
+                                        </div>
+                                    </div>
+
+                                <div class="form-group text-left">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Nombre:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="autocompleteEscalamientoDos"
+                                               ng-model="PersonaEscalamiento2.Nombre" ng-readonly="enabletext3" />
+                                    </div>
+                                </div>
+                                <div class="form-group text-left">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Correo:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input ng-model="targetModelDos.MailEscalamiento2" class="form-control" ng-readonly="true" id="mailEscalamientoDos" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group text-center">
+                            <button ng-click="guardar(Descripcion,HorasSegundoEscalamiento,TiempoAtencion, TipoId)" class="btn btn-info">Guardar</button>
+                            <button ng-click="toggleModal()" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--</modal>-->
+
+<modal visible="showModalConfirm" title="Mensaje del sistema" id="modalConfirm" modalheadtype="success">
+    <div class="form-group">
+        <alert type="info" show="true" dismissable="false" class="text-left">
+            Los datos se guardaron correctamente
+        </alert>
+    </div>
+    <div class="form-group text-right">
+        <button ng-click="toggleModalConfirm()" class="btn btn-info">Aceptar</button>
+    </div>
+</modal>
+
+<modal visible="showModal2" title="Mensaje del sistema" id="modal2" modalheadtype="info">
+    <div class="form-group">
+        <alert type="info" show="true" dismissable="false" class="text-left">
+            {{mensaje}}
+        </alert>
+    </div>
+    <div class="form-group text-right">
+            <button ng-click="toggleModal2()" class="btn btn-info">Cerrar</button>
+    </div>
+</modal>

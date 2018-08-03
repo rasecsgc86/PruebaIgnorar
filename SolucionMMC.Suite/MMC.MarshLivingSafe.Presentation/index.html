@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>{{pageTitle}}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/json" ; charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html" ; charset="utf-8" />
+      <!--       <meta http-equiv="Content-Type" content="text/html"; charset="utf-8" /> -->
+      <!-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" /> -->
+      <!--    <meta http-equiv="Content-Type" content="text/html; charset=utf8_spanish_ci" /> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-callouts.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-block-ui/dist/angular-block-ui.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-notification/dist/angular-ui-notification.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/jquery-ui/themes/base/jquery-ui.min.css" />
+    <!-- Styles  -->
+    <link rel="stylesheet" type="text/css" href="assets/css/login-app.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/am.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/configurador.css">
+    <link href="assets/css/ManejadorUdi.css" rel="stylesheet" />
+    <!-- For Bootstrap UI Button -->
+    <!--<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>-->
+  
+
+</head>
+<body ng-controller="IndexController">
+    <header>
+        <section ng-include="'views/main/header.html'"></section>
+        <section ng-if="bMenu" ng-include="'views/main/menu.html'"></section>
+    </header>
+    <main>
+        <div id="views-content" ui-view class="col-md-12"></div>
+    </main>
+    <footer>
+        <section class="foot" ng-include="'views/main/footer.html'" style="z-index: 10 !important"></section>
+    </footer>
+    <modal visible="showModalErrors" title="Error" id="modalErrors" modalheadtype="{{modalErrorsType}}">
+        <div class="form-group">
+            <alert type="{{modalErrorsType}}" show="true" dismissable="false" class="text-left">
+                <div id="msgModalErrors"></div>
+            </alert>
+        </div>
+        <div class="form-group text-right">
+            <button ng-click="toggleModalErrors()" class="btn btn-{{modalErrorsType}}">Aceptar</button>
+        </div>
+    </modal>
+</body>
+<script src="bower_components/requirejs/require.js" data-main="app/main"></script>
+<!--<script type="text/javascript" src="common/js/third-party/jquery/jquery.js"></script>
+<script type="text/javascript" src="common/js/components/captcha-config.js"></script>-->
+<!--<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=es-419" async defer></script>-->
+</html>
