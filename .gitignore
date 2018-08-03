@@ -12,9 +12,6 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
-#Rutas de angular
-!**/bower_components/angular-ui-router/release/*.js
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -87,6 +84,11 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+
+#Rutas de angular
+#!**/bower_components/angular-ui-router/release/*.js
+!angular-ui-router.js
+!angular-ui-router.min.js
 
 # Chutzpah Test files
 _Chutzpah*
