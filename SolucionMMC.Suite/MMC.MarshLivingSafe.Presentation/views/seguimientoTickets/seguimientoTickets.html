@@ -1,0 +1,288 @@
+﻿<div class="container">
+    <style>
+        .btn span.glyphicon {
+            opacity: 0;
+        }
+
+        .btn.active span.glyphicon {
+            opacity: 1;
+        }
+    </style>
+    <br />
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Seguimiento Tickets
+            <div class="panel-title pull-right">{{date | date:'dd/MM/yyyy HH:mm'}}</div>
+            <div class="clearfix"></div>
+        </div>
+
+
+        <div class="panel-body">
+            <br />
+            <form class="form-horizontal" name="formSeguimientoTickes">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label class="control-label">Cliente:</label>
+                        </div>
+                        <div class="col-md-9">
+                            <label class="control-label  text-info">{{seguimientoticket.NombreCliente}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <div class="col-md-3">
+                                <label class="control-label">Carátula:</label>
+                            </div>
+                            <div class="col-md-9">
+                                <label class="control-label  text-info">{{seguimientoticket.Caratula}}</label>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label class="control-label">Tipo de Ticket:</label>
+                        </div>
+                        <div class="col-md-9">
+                            <label class="control-label  text-info">{{seguimientoticket.TipoTicket}}</label> <label class="control-label">#{{seguimientoticket.TicketId}}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label class="control-label">Descripci&oacute;n del Ticket:</label>
+                        </div>
+                        <div class="col-md-9">
+                            <label class="control-label  text-info wordWraps">{{seguimientoticket.DescripcionTicket}} </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-1">
+                            <label class="control-label text-info">Estatus : </label>
+                        </div>
+                        <div class="col-md-1">
+                            <span class="label label-danger">{{seguimientoticket.DescripcionEstatus}}</span>
+                        </div>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-2">
+                            <label class="control-label  text-info">Modificar Aseguradora</label>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-control" id="selectAseg" name="selectAseg" ng-model="selectAsegTicket" ng-disabled="bndAseg" ng-options="aseg as aseg.Nombre for aseg in asegTicket
+                                 track by aseg.Nombre" ng-required="true">
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <label class="control-label text-info">{{seguimientoticket.Duenio}}</label>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label class="control-label">Registro este ticket hace</label>
+                            <label ng-if="!seguimientoticket.EstatusAtencion" class="control-label  text-danger"> {{seguimientoticket.TiempoAtencion}}</label>
+                            <label ng-if="seguimientoticket.EstatusAtencion" class="control-label  text-success"> {{seguimientoticket.TiempoAtencion}}</label>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label  text-info"> Modificar Estatus</label>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-control" id="status" name="status" ng-model="estatusTicket" ng-options="estatusTicket as estatusTicket.Descripcion for estatusTicket in estatusTickets"
+                                ng-change="gestionControles()"></select>
+
+                        </div>
+                    </div>
+                    <div class="form-group" ng-hide="!check">
+                        <div class="col-md-5">
+                            <div class="col-md-12">
+                                <label class="control-label">
+                                Concluir ticket
+                            </label>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="file" nv-file-select="" uploader="uploadercierre" id="fileCierre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="seguimientoticket.SiFlotilla">
+                        <div class="col-md-2">
+                            <label class="control-label  text-info"> OT Aseguradora</label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" ng-model="NoOt" class="form-control" ng-disabled="siTipoUsuario" maxlength="15" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="control-label  text-info"> OT Registro Automarsh</label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" ng-model="OtRegistro" class="form-control" ng-disabled="siTipoUsuario" maxlength="15" />
+                        </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading"><label class="control-label">Comentarios Tickets</label></div>
+                        <div class="panel-body">
+                            <div class="row" ng-repeat="comen in listaComentarios">
+                                <div class="col-md-4 table-bordered headTicket">
+                                    <label class="control-label text-info">{{comen.Nombre}} {{comen.Paterno}} {{comen.Materno}}</label>
+                                </div>
+                                <div class="col-md-4 table-bordered headTicket">
+                                    <label class="control-label">Comento este ticket el día: </label> <label class="control-label text-primary">{{comen.FechaComentario}}</label>
+                                </div>
+                                <div class="col-md-4 table-bordered headTicket">
+                                    <label class="control-label text-primary">Estatus : {{comen.Estatus}}</label>
+                                </div>
+                                <div class="col-md-12 table-bordered headComentTicket">
+                                    <label class="control-label wordWraps">{{comen.Comentario}}</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="text-info">Comentar</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea class="form-control" maxlength="500" rows="10" ng-model="Comentario"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-if="(seguimientoticket.CveEstatus == '4' || seguimientoticket.CveEstatus == '5') && seguimientoticket.TipoUsuario === 'Duenio'">
+                        <div class="col-md-12">
+                            <input type="file" id="fileUp" nv-file-select="" uploader="uploader">
+                        </div>
+
+
+                    </div>
+                    <div class="form-group" ng-if="(seguimientoticket.CveEstatus == '4' || seguimientoticket.CveEstatus == '5') && seguimientoticket.TipoUsuario === 'Duenio'">
+                        <div class="col-md-2">
+                            <input type="button" value="Agregar" class="btn btn-default" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length"
+                            />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label text-info">
+                                <span>
+                                    Se puede adjuntar hasta 10 Mb
+                                    Extensiones permitidas
+                                </span>
+                            </label>
+                            <label class="control-label">
+                                <span>
+                                    .xls, .xlsx, .doc, .docx, .zip, .gif, .jpg, .png, .xml y .pdf
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label"> Archivos </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-0 col-md-12">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-condensed table-striped">
+
+                                    <tr ng-repeat="item in ArchivosCierre">
+                                        <td ng-if="(seguimientoticket.CveEstatus == '4' || seguimientoticket.CveEstatus == '5') && seguimientoticket.TipoUsuario === 'Duenio'">
+                                            <a class="text-danger" href="" ng-click="eliminarArchivo(item.IdArchivoTicket)">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                            </a>
+                                        </td>
+                                        <td ng-if="(seguimientoticket.CveEstatus != '4' || seguimientoticket.CveEstatus != '5') && seguimientoticket.TipoUsuario != 'Duenio'">
+                                        </td>
+                                        <td>
+                                            <a ng-click="descargarArchivo(item.RutaArchivo+item.NombreArchivo, item.NombreArchivo)" download>
+                                                {{ item.NombreArchivo }}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="contentBtnTickets">
+                            <input type="button" value="Reasignar" class="btn btn-info" ng-click="showReasignar()" ng-disabled="siReasigna" ng-hide="showRasigna"
+                            />
+                            <input type="button" value="Guardar" class="btn btn-info" ng-click="guardar()" ng-disabled="siGuarda" />
+                            <input type="button" value="Regresar" class="btn btn-info" ui-sref="registros">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- ###################################  Reasignar responsable    ##########################  -->
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modalHead-info">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Reasignar Ticket</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="myform">
+                    <div class="row">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="form-group text-right">
+                                    <div class="col-md-2">
+                                        <label class="control-label">Nombre:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="autocompleteResponsable" ng-model="PersonaResponsableModel.Nombre" ng-readonly="enabletext"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group text-center">
+                            <button ng-click="reasignar()" class="btn btn-info">Aceptar</button>
+                            <button ng-click="hideReasignar()" class="btn btn-danger">Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--</modal>-->
+
+<modal visible="showModalValidacion" title="Mensaje del sistema" id="modalConfirm" modalheadtype="danger">
+    <div class="form-group">
+        <alert type="warning" show="true" dismissable="false" class="text-left">
+            {{mensaje}}
+        </alert>
+    </div>
+    <div class="form-group text-right">
+        <button ng-click="toggleModalConfirm()" class="btn btn-info">Aceptar</button>
+    </div>
+</modal>
+
+<modal visible="showModalConfirm" title="Mensaje del sistema" id="modalConfirm" modalheadtype="success">
+    <div class="form-group">
+        <alert type="info" show="true" dismissable="false" class="text-left">
+            Los datos se guardaron correctamente
+        </alert>
+    </div>
+    <div class="form-group text-right">
+        <button ng-click="toggleModalConfirmSuccess()" class="btn btn-info">Aceptar</button>
+    </div>
+</modal>
+
+<modal visible="showModalConfirmReasignar" title="Mensaje del sistema" id="modalConfirm2" modalheadtype="success">
+    <div class="form-group">
+        <alert type="info" show="true" dismissable="false" class="text-left">
+            Se ha reasigando correctamenta al nuevo responsable
+        </alert>
+    </div>
+    <div class="form-group text-right">
+        <button ng-click="toggleModalConfirmReasignar()" class="btn btn-info">Aceptar</button>
+    </div>
+</modal>
