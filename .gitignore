@@ -16,8 +16,8 @@
 [Dd]ebug/
 [Dd]ebugPublic/
 
-[Rr]elease/
-![Rr]elease/angular-ui-router.js 
+[Rr]elease/*
+!angular-ui-router.js 
 
 
 [Rr]eleases/
