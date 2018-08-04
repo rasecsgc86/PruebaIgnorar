@@ -1,0 +1,468 @@
+<link href="assets/css/multiple-emails.css" rel="stylesheet" />
+<script src="bower_components/MultipleEmails/multiple-emails.js"></script>
+
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+        <!-- Menu cotizador -->
+        <div class="flex-containerM">
+            <img src="assets/img/cotizador/tracker.png" class="flexImg flexImg-{{rama}}">
+            <div class="flex-itemM fontMovil flexTxtM-{{rama}}-{{bramaCot}}">
+                1. Cotiza
+            </div>
+            <div class="flex-itemM fontMovil flexTxtM-{{rama}}-{{bramaComp}}">
+                2. Compara
+            </div>
+            <div class="flex-itemM fontMovil flexTxtM-{{rama}}-{{bramaEmit}}">
+                3. Emite
+            </div>
+            <div class="flex-itemM fontMovil flexTxtM-{{rama}}-{{bramaImp}}">
+                4. Imprime
+            </div>
+        </div>
+        <!-- Contenido dinámico del cotizador -->
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ui-view></ui-view>
+
+
+                <div id="divEnvioEmail" ng-show="showMe">
+
+                    <div style="position:relative;bottom:0px;right:0px"><h4 style="color:red"><span class="glyphicon glyphicon-remove" ng-click="enviarCotEmail()"></span></h4> </div>
+
+                    <div class="row rowDM">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="tituloDForm text-center">Envío de Cotización por Correo </div>
+                            <div class="borderBContent">
+
+
+
+                                <div class='container'>
+                                    <div class='row'>
+                                        <!--<h5 class="tituloDForm text-center">Envío de Cotización por Correo</h5>-->
+                                        <div class='form-group'>
+                                            <div class='col-sm-4'>
+
+                                                <h4 for='example_emailBS'>Para:  <span class="label label-success">{{Informacion.Cliente.Cotizante.CorreoElectronico}}</span></h4>
+                                                <h4 style="color:forestgreen;"> <span class="glyphicon glyphicon-plus" ng-click="AgregarDestinatarios()"></span></h4>
+                                                <div ng-show="showDestinararios">
+                                                    <h4>Destinatarios:</h4>
+                                                    <input type='text' id='example_emailBS' name='example_emailBS' class='form-control' placeholder="Agregar Emails" ng-model="destinatariosModel">
+                                                </div>
+                                            </div>
+
+                                            <br />
+
+
+                                        </div>
+                                    </div>
+                                    <div> <button class=" btn btnCotizador" style="position:absolute;bottom:0px;right:0px;margin-right:20px" ng-click="EnviarPDFMail()"> Enviar</button></div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="row rowDM">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tituloDForm text-center">Información general</div>
+                <div class="borderBContent">
+                    <div style="width: 100%; padding-left: 10%; padding-right: 10%;">
+                        <center>
+                          
+                                <img width="200" height="50" id="ImagenCliente" ng-if="Informacion.Cliente.Cliente.ClienteId && Informacion.Cliente.Cliente.Cliente"  class="img-rounded">
+                           
+                                 </center>
+                    </div>
+                    <table class="tableInfo">
+                        <tr>
+                            <td class="widthPanelComun">Contratante:</td>
+                            <td ng-if="Informacion.Cliente.Cotizante.TipoPersona == 'Fisica'">{{Informacion.Cliente.Cotizante.Nombre}} {{Informacion.Cliente.Cotizante.ApellidoP}} {{Informacion.Cliente.Cotizante.ApellidoM}}</td>
+                            <td ng-if="Informacion.Cliente.Cotizante.TipoPersona == 'Moral'">{{Informacion.Cliente.Cotizante.RazonSocial}}</td>
+                            <td ng-if="optPersonaFisica">{{Informacion.Cliente.Emisor.Nombre}} {{Informacion.Cliente.Emisor.Paterno}} {{Informacion.Cliente.Emisor.Materno}}</td>
+                            <td ng-if="optPersonaFisica">{{Informacion.Cliente.Emisor.Nombre}}</td>
+                        </tr>
+                        <tr>
+                            <td>Negocio:</td>
+                            <td>{{Informacion.Cliente.Cliente.Cliente}}</td>
+                        </tr>
+                        <tr>
+                            <td>Agencia:</td>
+                            <td>{{Informacion.Cliente.Agencia.Agencia}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row rowDM">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tituloDForm text-center">Vehículo</div>
+                <div class="borderBContent">
+                    <table class="tableInfo">
+                        <tr>
+                            <td class="widthPanelComun">Auto:</td>
+                            <td>{{Informacion.Vehiculo.TipoUnidad.Valor}}</td>
+                        </tr>
+                        <tr>
+                            <td>Clave Marsh:</td>
+                            <td>{{Informacion.Vehiculo.Version.ClaveInterna}}</td>
+                        </tr>
+                        <tr>
+                            <td>Uso:</td>
+                            <td>{{Informacion.Vehiculo.Servicio.Valor}}</td>
+                        </tr>
+                        <tr>
+                            <td>Valor:</td>
+                            <td>{{numberFormat(Informacion.Vehiculo.Valor)}}</td>
+                        </tr>
+                        <tr>
+                            <td>Modelo:</td>
+                            <td>{{Informacion.Vehiculo.Modelo.Valor}}</td>
+                        </tr>
+                        <tr>
+                            <td>Descripción:</td>
+                            <td>
+                                {{Informacion.Vehiculo.Armadora.Valor}}
+                                <span ng-if="Informacion.Vehiculo.SubMarca.Valor!='' && Informacion.Vehiculo.SubMarca.Valor!=undefined &&
+                                      Informacion.Vehiculo.SubMarca.Valor!=null">,</span>
+                                {{Informacion.Vehiculo.SubMarca.Valor}}
+                                <span ng-if="Informacion.Vehiculo.Version.Descripcion !='' && Informacion.Vehiculo.Version.Descripcion !=undefined &&
+                                Informacion.Vehiculo.Version.Descripcion !=null">,</span>
+                                {{Informacion.Vehiculo.Version.Descripcion}}
+                            </td>
+                        </tr>
+                        <tr ng-if="Informacion.Vehiculo.Pasajero.Pasajeros != null && Informacion.Vehiculo.Pasajero.Pasajeros != 0">
+                            <td>Pasajeros:</td>
+                            <td>{{Informacion.Vehiculo.Pasajero.Pasajeros}}</td>
+                        </tr>
+                        <tr ng-if="Informacion.Vehiculo.ShowCargas">
+                            <td>Tipo de Carga:</td>
+                            <td>{{Informacion.Vehiculo.Carga.Valor}}</td>
+                        </tr>
+                        <tr ng-if="Informacion.Vehiculo.ShowRemolques">
+                            <td>Número de Remolques:</td>
+                            <td>{{Informacion.Vehiculo.Remolque.Nombre}}</td>
+                        </tr>
+                    </table>
+                    <table class="tableInfo" ng-repeat="cobertura in listaAdaptaciones" ng-if="hayDatosPanel">
+                        <tr>
+                            <td>
+                                <span ng-if="cobertura.FiltroValorRangoSuma !=''">{{cobertura.NombreCobertura}}: </span>
+                            </td>
+                            <td class="widthPanelCobEsp">
+                                {{cobertura.FiltroValorRangoSuma}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td ng-if="cobertura.FiltroValorRangoSuma !='' && cobertura.FiltroValorRangoSuma !=''">
+                                <span ng-if="cobertura.FiltroValorRangoSuma !=''">Monto {{cobertura.NombreCobertura}}: </span>
+                            </td>
+                            <td ng-if="cobertura.FiltroValorRangoSuma !='' && cobertura.FiltroValorRangoSuma !=''">
+                                {{numberFormat(cobertura.FiltroValorRangoDeducible)}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row rowDM">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tituloDForm text-center">Cotización</div>
+                <div class="borderBContent">
+                    <table class="tableInfo">
+                        <tr>
+                            <td class="widthPanelComun">Plazo:</td>
+                            <td>{{Informacion.Cotizacion.Plazo.Valor}}</td>
+                        </tr>
+                        <tr>
+                            <td>Paquete:</td>
+                            <td>{{paquete}}</td>
+                        </tr>
+                        <tr ng-if="bndUDI">
+                            <td>UDI:</td>
+                            <td>{{Informacion.Cotizacion.Udi.Valor}}</td>
+                        </tr>
+                        <tr ng-if="Informacion.Cotizacion.Estado.Estado != null">
+                            <td>Edo. de Circulación:</td>
+                            <td>{{Informacion.Cotizacion.Estado.Estado}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row rowDM">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="tituloDForm text-center">¿Qué puedo hacer con la información?</div>
+                <div class="borderBContent">
+                    <div class="contentBtns">
+                        <button class=" btn btnCotizador" ng-if="bramaComp" ui-sref="cotizadorgen.cotizador({idSolicitud:idSolicitudR})">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            REGRESAR
+                        </button>
+                        <!--<button class=" btn btnCotizador" ng-if="bramaComp">
+                            EXPORTAR COTIZACIÓN
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>-->
+                        <button class="btn btnCotizador" ng-if="bramaCot" ng-click="submitCot()">
+                            COTIZAR
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>
+                        <button class=" btn btnCotizador" ng-if="bramaEmit" ui-sref="cotizadorgen.comparador({idSolicitud:idSolicitudR})">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            REGRESAR
+                        </button>
+                        <button ng-click="submitEmi()" class=" btn btnCotizador" ng-if="bramaEmit">
+                            CONTINUAR
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-12 marginDown" ng-if="bramaCot && hayDatosPanel">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <div class="col-md-12 sinPadding">
+                <div class="col-md-12 borderBContent sinPadding">
+                    <div class="col-md-12 sinPadding topEncabezado">
+                        <div class="col-md-8">
+                            <div class="col-md-6 labelPanel alingCenter">COBERTURAS</div>
+                            <div class="col-md-3 labelPanel alingCenter">SUMA ASEGURADA</div>
+                            <div class="col-md-3 labelPanel alingCenter">DEDUCIBLES</div>
+                        </div>
+                        <div class="col-md-4 heightImg sinPadding">
+                            <div class="flex-containerP">
+                                <div class="topImgAseg col-md-2" ng-repeat="aseguradora in AuxAseguradoras">
+                                    <img class="transformImgAseg" ng-src="{{aseguradora.Img}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 sinPadding">
+                        <div class="col-md-8">
+                            <hr class="lineaDoble" />
+                        </div>
+                    </div>
+                    <div class="col-md-12 sinPadding" ng-repeat="cobertura in Panel.Coberturas">
+                        <div class="col-md-12 sinPadding" ng-if="cobertura.IsFija">
+                            <!-- Dibujar las coberturas basicas -->
+                            <div class="col-md-8 heightCobertura">
+                                <!-- Coberturas -->
+                                <div class="col-md-6 sinPadding">
+                                    <div class="col-md-1 sinPadding">
+                                        <input type="checkbox" ng-change="enviarPanel(cobertura)" ng-model="cobertura.IsSeleccionada" name="chkCobertura" ng-disabled="!cobertura.IsFijaPerfil" />
+                                    </div>
+                                    <div class="col-md-11 paddingLabel">
+                                        {{cobertura.NombreCobertura}}
+                                    </div>
+                                </div>
+                                <!-- Sumas aseguradas -->
+                                <div class="col-md-3 alingCenter">
+                                    <div ng-if="cobertura.Enmascaramiento && !cobertura.IsEspecial">
+                                        <span>Amparado</span>
+                                    </div>
+                                    <div ng-if="cobertura.RangosModel.RangosSumas.length>1 && cobertura.Dependencia != '1' && !cobertura.IsEspecial && !cobertura.Enmascaramiento">
+                                        <select id.combo class="comboBox comboCoberturas" ng-model="cobertura.FiltroValorRangoSuma" selected ng-change="enviarPanel(cobertura)"
+                                                ng-disabled="!cobertura.IsSeleccionada">
+                                            <option ng-repeat="rangoSuma in cobertura.RangosModel.RangosSumas" value="{{rangoSuma}}">{{rangoSuma}}</option>
+                                        </select>
+                                    </div>
+                                    <div ng-if="cobertura.RangosModel.RangosSumas.length==1 && cobertura.Dependencia != '1' && !cobertura.IsEspecial && !cobertura.Enmascaramiento">
+                                        <span>{{cobertura.FiltroValorRangoSuma = cobertura.RangosModel.RangosSumas[0]}}</span>
+                                    </div>
+                                    <div ng-if="cobertura.IsEspecial && cobertura.Dependencia != '1'">
+                                        <input type="text" class="inputText comboCoberturas" name="Length" maxLength="50" ng-model="cobertura.FiltroValorRangoSuma" placeholder="Descripci&oacute;n"
+                                               ng-disabled="!cobertura.IsSeleccionada">
+                                    </div>
+                                </div>
+                                <!-- Deducibles -->
+                                <div class="col-md-3 alingCenter">
+                                    <div ng-if="!cobertura.IsEspecial && (cobertura.Dependencia == '1' || cobertura.Dependencia == '2')">
+                                        <span>{{cobertura.FiltroValorRangoDeducible}}</span>
+                                    </div>
+                                    <div ng-if="cobertura.RangosModel.RangosDeducibles.length>1 && cobertura.Dependencia != '1' && cobertura.Dependencia != '2' && !cobertura.IsEspecial">
+                                        <select class="comboBox comboCoberturas" ng-model="cobertura.FiltroValorRangoDeducible" selected ng-change="enviarPanel(cobertura)"
+                                                ng-disabled="!cobertura.IsSeleccionada">
+                                            <option ng-repeat="rangoDeducible in cobertura.RangosModel.RangosDeducibles"
+                                                    value="{{rangoDeducible}}">
+                                                {{rangoDeducible}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div ng-if="cobertura.RangosModel.RangosDeducibles.length==1 && cobertura.Dependencia != '1' && cobertura.Dependencia != '2' && !cobertura.IsEspecial">
+                                        <span>{{cobertura.FiltroValorRangoDeducible = cobertura.RangosModel.RangosDeducibles[0]}}</span>
+                                    </div>
+                                    <div ng-if="cobertura.IsEspecial && cobertura.Dependencia != '1' && cobertura.Dependencia != '2'">
+                                        <input class="inputText facturaText comboCoberturas"
+                                               ng-model="cobertura.FiltroValorRangoDeducible"
+                                               ng-blur="validaSuma(cobertura.FiltroValorRangoDeducible,cobertura.IdCobertura)"
+                                               ng-disabled="!cobertura.IsSeleccionada || bndFactura && (Informacion.Vehiculo.Valor == '' || Informacion.Vehiculo.Valor == null || Informacion.Vehiculo.Valor == '$0.00') || !bndFactura"
+                                               placeholder="Valor"
+                                               name="Length" maxLength="13"
+                                               format="number"
+                                               type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 sinPadding">
+                                <div ng-repeat="coberturaAseguradora in cobertura.AseguradorasCobertura">
+                                    <div class="col-md-2 NA" ng-if="coberturaAseguradora.IndicadorCobertura=='NA'">
+                                        {{coberturaAseguradora.IndicadorCobertura}}
+                                    </div>
+                                    <div class="col-md-2 sinPadding" ng-if="coberturaAseguradora.IndicadorCobertura === 'CHECKED' ||  coberturaAseguradora.IndicadorCobertura === 'UNCHECKED'">
+                                        <div class="col-md-12 sinPadding" ng-if="coberturaAseguradora.Detalle !== '' && coberturaAseguradora.Detalle !== null">
+                                            <div class="col-md-6 sinPadding alingCenter" ng-if="coberturaAseguradora.IndicadorCobertura === 'CHECKED'">
+                                                <div class="col-lg-12 sinPadding">
+                                                    <img class="transformChk" ng-src="assets/img/cotizador/ok.png" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 sinPadding alingCenter" ng-if="coberturaAseguradora.IndicadorCobertura === 'UNCHECKED'">
+                                                <div class="col-lg-12 sinPadding">
+                                                    <img class="transformChk" ng-src="assets/img/cotizador/wrong.png" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 sinPadding alingCenter topEncabezado">
+                                                <div class="col-lg-12 sinPadding my-tooltip">
+                                                    <img src="assets/img/cotizador/info-azul.png">
+                                                    <span class="my-tooltiptext"
+                                                          ng-style="calculaPosicionPixel(coberturaAseguradora.Detalle.length)">{{coberturaAseguradora.Detalle}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 sinPadding" ng-if="coberturaAseguradora.Detalle === '' || coberturaAseguradora.Detalle === null || coberturaAseguradora.Detalle === undefined">
+                                            <div class="col-md-12 sinPadding alingCenter" ng-if="coberturaAseguradora.IndicadorCobertura === 'CHECKED'">
+                                                <img class="transformChk" ng-src="assets/img/cotizador/ok.png" />
+                                            </div>
+                                            <div class="col-md-12 sinPadding alingCenter" ng-if="coberturaAseguradora.IndicadorCobertura === 'UNCHECKED'">
+                                                <img class="transformChk" ng-src="assets/img/cotizador/wrong.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 sinPadding">
+                        <div class="col-md-8">
+                            <hr class="lineaDoble" />
+                        </div>
+                    </div>
+                    <!-- Dibujar las coberturas opcionales -->
+                    <div class="col-md-12 sinPadding" ng-repeat="cobertura in Panel.Coberturas">
+                        <div class="col-md-12 sinPadding" ng-if="!cobertura.IsFija">
+                            <div class="col-md-8">
+                                <!-- Coberturas -->
+                                <div class="col-md-6 sinPadding">
+                                    <div class="col-md-1 sinPadding">
+                                        <input type="checkbox" ng-change="enviarPanel(cobertura)" ng-model="cobertura.IsSeleccionada" name="chkCobertura" id="chkCobertura" />
+                                    </div>
+                                    <div class="col-md-11 paddingLabel">
+                                        {{cobertura.NombreCobertura}}
+                                    </div>
+                                </div>
+                                <!-- Sumas aseguradas -->
+                                <div class="col-md-3 alingCenter">
+                                    <div ng-if="cobertura.Enmascaramiento && !cobertura.IsEspecial">
+                                        <span>Amparado</span>
+                                    </div>
+                                    <div ng-if="cobertura.RangosModel.RangosSumas.length>1 && cobertura.Dependencia != '1' && !cobertura.IsEspecial && !cobertura.Enmascaramiento">
+                                        <select class="comboBox comboCoberturas" ng-model="cobertura.FiltroValorRangoSuma" selected ng-change="enviarPanel(cobertura)"
+                                                ng-disabled="!cobertura.IsSeleccionada">
+                                            <option ng-repeat="rangoSuma in cobertura.RangosModel.RangosSumas" value="{{rangoSuma}}">{{rangoSuma}}</option>
+                                        </select>
+                                    </div>
+                                    <div ng-if="cobertura.RangosModel.RangosSumas.length==1 && cobertura.Dependencia != '1' && !cobertura.IsEspecial && !cobertura.Enmascaramiento">
+                                        <span>{{cobertura.FiltroValorRangoSuma = cobertura.RangosModel.RangosSumas[0]}}</span>
+                                    </div>
+                                    <div ng-if="cobertura.IsEspecial && cobertura.Dependencia != '1' && !cobertura.Enmascaramiento">
+                                        <input type="text" class="inputText comboCoberturas" name="Length" maxLength="50" ng-model="cobertura.FiltroValorRangoSuma" placeholder="Descripci&oacute;n"
+                                               ng-disabled="!cobertura.IsSeleccionada">
+                                    </div>
+                                </div>
+                                <!-- Deducibles -->
+                                <div class="col-md-3 alingCenter">
+                                    <div ng-if="!cobertura.IsEspecial && (cobertura.Dependencia == '1' || cobertura.Dependencia == '2')">
+                                        <span>{{cobertura.FiltroValorRangoDeducible}}</span>
+                                    </div>
+                                    <div ng-if="cobertura.RangosModel.RangosDeducibles.length>1 && cobertura.Dependencia != '1' && cobertura.Dependencia != '2' && !cobertura.IsEspecial">
+                                        <select class="comboBox comboCoberturas" ng-model="cobertura.FiltroValorRangoDeducible" ng-change="enviarPanel(cobertura)"
+                                                ng-disabled="!cobertura.IsSeleccionada">
+                                            <option ng-repeat="rangoDeducible in cobertura.RangosModel.RangosDeducibles"
+                                                    value="{{rangoDeducible}}">
+                                                {{rangoDeducible}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div ng-if="cobertura.RangosModel.RangosDeducibles.length==1 && cobertura.Dependencia != '1' && cobertura.Dependencia != '2' && !cobertura.IsEspecial">
+                                        <span>{{cobertura.FiltroValorRangoDeducible = cobertura.RangosModel.RangosDeducibles[0]}}</span>
+                                    </div>
+                                    <div ng-if="cobertura.IsEspecial && cobertura.Dependencia != '1' && cobertura.Dependencia != '2'">
+                                        <input class="inputText facturaText comboCoberturas"
+                                               ng-model="cobertura.FiltroValorRangoDeducible"
+                                               ng-blur="validaSuma(cobertura.FiltroValorRangoDeducible,cobertura.IdCobertura)"
+                                               ng-disabled="!cobertura.IsSeleccionada || bndFactura && (Informacion.Vehiculo.Valor == '' || Informacion.Vehiculo.Valor == null || Informacion.Vehiculo.Valor == '$0.00') || !bndFactura"
+                                               placeholder="Valor"
+                                               name="Length" maxLength="13"
+                                               format="number"
+                                               type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 sinPadding">
+                                <div ng-repeat="coberturaAseguradora in cobertura.AseguradorasCobertura">
+                                    <div class="col-md-2 NA" ng-if="coberturaAseguradora.IndicadorCobertura=='NA'">
+                                        {{coberturaAseguradora.IndicadorCobertura}}
+                                    </div>
+                                    <div class="col-md-2 sinPadding" ng-if="coberturaAseguradora.IndicadorCobertura === 'CHECKED' ||  coberturaAseguradora.IndicadorCobertura === 'UNCHECKED'">
+                                        <div class="col-md-12 sinPadding" ng-if="coberturaAseguradora.Detalle !== '' && coberturaAseguradora.Detalle !== null">
+                                            <div class="col-md-6 sinPadding alingCenter" ng-if="coberturaAseguradora.IndicadorCobertura === 'CHECKED'">
+                                                <div class="col-lg-12 sinPadding">
+                                                    <img class="transformChk" ng-src="assets/img/cotizador/ok.png" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 sinPadding alingCenter" ng-if="coberturaAseguradora.IndicadorCobertura === 'UNCHECKED'">
+                                                <div class="col-lg-12 sinPadding">
+                                                    <img class="transformChk" ng-src="assets/img/cotizador/wrong.png" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 sinPadding alingCenter topEncabezado">
+                                                <div class="col-lg-12 sinPadding my-tooltip">
+                                                    <img src="assets/img/cotizador/info-azul.png">
+                                                    <span class="my-tooltiptext"
+                                                          ng-style="calculaPosicionPixel(coberturaAseguradora.Detalle.length)">{{coberturaAseguradora.Detalle}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 sinPadding" ng-if="coberturaAseguradora.Detalle === '' || coberturaAseguradora.Detalle === null || coberturaAseguradora.Detalle === undefined">
+                                            <div class="col-md-12 sinPadding alingCenter" ng-if="coberturaAseguradora.IndicadorCobertura === 'CHECKED'">
+                                                <img class="transformChk" ng-src="assets/img/cotizador/ok.png" />
+                                            </div>
+                                            <div class="col-md-12 sinPadding alingCenter" ng-if="coberturaAseguradora.IndicadorCobertura === 'UNCHECKED'">
+                                                <img class="transformChk" ng-src="assets/img/cotizador/wrong.png" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
