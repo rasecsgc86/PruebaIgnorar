@@ -15,8 +15,8 @@
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
-#[Rr]elease/
-#![Rr]elease/angular-ui-router.min.js
+![Rr]elease/angular-ui-router.min.js
+[Rr]elease/
 [Rr]eleases/
 x64/
 x86/
@@ -228,8 +228,7 @@ orleans.codegen.cs
 
 # Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
-bower_components/*
-!bower_components/
+#bower_components/
 
 
 # RIA/Silverlight projects
